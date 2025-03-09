@@ -1,1 +1,94 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="200" version="1.1" viewBox="0 0 200 200"><title>Group 28 Copy 5</title><desc>Created with Sketch.</desc><defs><linearGradient id="linearGradient-1" x1="62.102%" x2="108.197%" y1="0%" y2="37.864%"><stop offset="0%" stop-color="#4285EB"/><stop offset="100%" stop-color="#2EC7FF"/></linearGradient><linearGradient id="linearGradient-2" x1="69.644%" x2="54.043%" y1="0%" y2="108.457%"><stop offset="0%" stop-color="#29CDFF"/><stop offset="37.86%" stop-color="#148EFF"/><stop offset="100%" stop-color="#0A60FF"/></linearGradient><linearGradient id="linearGradient-3" x1="69.691%" x2="16.723%" y1="-12.974%" y2="117.391%"><stop offset="0%" stop-color="#FA816E"/><stop offset="41.473%" stop-color="#F74A5C"/><stop offset="100%" stop-color="#F51D2C"/></linearGradient><linearGradient id="linearGradient-4" x1="68.128%" x2="30.44%" y1="-35.691%" y2="114.943%"><stop offset="0%" stop-color="#FA8E7D"/><stop offset="51.264%" stop-color="#F74A5C"/><stop offset="100%" stop-color="#F51D2C"/></linearGradient></defs><g id="Page-1" fill="none" fill-rule="evenodd" stroke="none" stroke-width="1"><g id="logo" transform="translate(-20.000000, -20.000000)"><g id="Group-28-Copy-5" transform="translate(20.000000, 20.000000)"><g id="Group-27-Copy-3"><g id="Group-25" fill-rule="nonzero"><g id="2"><path id="Shape" fill="url(#linearGradient-1)" d="M91.5880863,4.17652823 L4.17996544,91.5127728 C-0.519240605,96.2081146 -0.519240605,103.791885 4.17996544,108.487227 L91.5880863,195.823472 C96.2872923,200.518814 103.877304,200.518814 108.57651,195.823472 L145.225487,159.204632 C149.433969,154.999611 149.433969,148.181924 145.225487,143.976903 C141.017005,139.771881 134.193707,139.771881 129.985225,143.976903 L102.20193,171.737352 C101.032305,172.906015 99.2571609,172.906015 98.0875359,171.737352 L28.285908,101.993122 C27.1162831,100.824459 27.1162831,99.050775 28.285908,97.8821118 L98.0875359,28.1378823 C99.2571609,26.9692191 101.032305,26.9692191 102.20193,28.1378823 L129.985225,55.8983314 C134.193707,60.1033528 141.017005,60.1033528 145.225487,55.8983314 C149.433969,51.69331 149.433969,44.8756232 145.225487,40.6706018 L108.58055,4.05574592 C103.862049,-0.537986846 96.2692618,-0.500797906 91.5880863,4.17652823 Z"/><path id="Shape" fill="url(#linearGradient-2)" d="M91.5880863,4.17652823 L4.17996544,91.5127728 C-0.519240605,96.2081146 -0.519240605,103.791885 4.17996544,108.487227 L91.5880863,195.823472 C96.2872923,200.518814 103.877304,200.518814 108.57651,195.823472 L145.225487,159.204632 C149.433969,154.999611 149.433969,148.181924 145.225487,143.976903 C141.017005,139.771881 134.193707,139.771881 129.985225,143.976903 L102.20193,171.737352 C101.032305,172.906015 99.2571609,172.906015 98.0875359,171.737352 L28.285908,101.993122 C27.1162831,100.824459 27.1162831,99.050775 28.285908,97.8821118 L98.0875359,28.1378823 C100.999864,25.6271836 105.751642,20.541824 112.729652,19.3524487 C117.915585,18.4685261 123.585219,20.4140239 129.738554,25.1889424 C125.624663,21.0784292 118.571995,14.0340304 108.58055,4.05574592 C103.862049,-0.537986846 96.2692618,-0.500797906 91.5880863,4.17652823 Z"/></g><path id="Shape" fill="url(#linearGradient-3)" d="M153.685633,135.854579 C157.894115,140.0596 164.717412,140.0596 168.925894,135.854579 L195.959977,108.842726 C200.659183,104.147384 200.659183,96.5636133 195.960527,91.8688194 L168.690777,64.7181159 C164.472332,60.5180858 157.646868,60.5241425 153.435895,64.7316526 C149.227413,68.936674 149.227413,75.7543607 153.435895,79.9593821 L171.854035,98.3623765 C173.02366,99.5310396 173.02366,101.304724 171.854035,102.473387 L153.685633,120.626849 C149.47715,124.83187 149.47715,131.649557 153.685633,135.854579 Z"/></g><ellipse id="Combined-Shape" cx="100.519" cy="100.437" fill="url(#linearGradient-4)" rx="23.6" ry="23.581"/></g></g></g></g></svg>
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- 渐变定义 -->
+  <defs>
+    <linearGradient id="cloudGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f8fbff" />
+      <stop offset="100%" stop-color="#e6f0ff" />
+    </linearGradient>
+    <linearGradient id="starGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#a0d8ff" />
+      <stop offset="100%" stop-color="#7ac7ff" />
+    </linearGradient>
+    <linearGradient id="techGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#5a9ee2" />
+      <stop offset="100%" stop-color="#3a80d2" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- 背景科技元素 - 更精细的电路板纹理 -->
+  <g opacity="0.15">
+    <path d="M15,20 L45,20 L45,35 L60,35 L60,55 L35,55 L35,75 L55,75 L55,95 L75,95 L75,75 L95,75 L95,50 L75,50 L75,30 L95,30 L95,10"
+          fill="none" stroke="url(#techGradient)" stroke-width="1.2" />
+    <path d="M115,10 L115,30 L135,30 L135,50 L160,50 L160,70 L175,70 L175,95 L195,95"
+          fill="none" stroke="url(#techGradient)" stroke-width="1.2" />
+    <circle cx="45" cy="35" r="2" fill="#4a90e2" />
+    <circle cx="75" cy="50" r="2" fill="#4a90e2" />
+    <circle cx="135" cy="50" r="2" fill="#4a90e2" />
+    <circle cx="175" cy="70" r="2" fill="#4a90e2" />
+  </g>
+
+  <!-- 改进的星星元素 - 更精致的设计 -->
+  <g filter="url(#glow)">
+    <path d="M40,40 L42.5,48 L36,44 L44,44 L37.5,48 Z" fill="url(#starGradient)"/>
+    <path d="M170,45 L173,53 L166.5,49 L179.5,49 L173,53 Z" fill="url(#starGradient)"/>
+    <path d="M180,110 L182.5,118 L176,114 L184,114 L177.5,118 Z" fill="url(#starGradient)"/>
+    <path d="M25,130 L27.5,138 L21,134 L29,134 L22.5,138 Z" fill="url(#starGradient)"/>
+    <path d="M100,20 L103,28 L96.5,24 L109.5,24 L103,28 Z" fill="url(#starGradient)"/>
+    <path d="M155,155 L157.5,163 L151,159 L159,159 L152.5,163 Z" fill="url(#starGradient)"/>
+    <!-- 添加几个小星星点缀 -->
+    <circle cx="60" cy="60" r="1.5" fill="#a0d8ff" />
+    <circle cx="160" cy="130" r="1.5" fill="#a0d8ff" />
+    <circle cx="40" cy="150" r="1.5" fill="#a0d8ff" />
+    <circle cx="190" cy="60" r="1.5" fill="#a0d8ff" />
+  </g>
+
+  <!-- 优化的云形状 - 更流畅的曲线 -->
+  <path d="M165,125 C187,125 195,107 195,92 C195,77 187,62 165,62 C165,40 147,20 120,20 C93,20 75,40 75,62 C53,62 35,77 35,92 C35,107 53,125 75,125 Z"
+        fill="url(#cloudGradient)" stroke="#4a90e2" stroke-width="2.5" filter="url(#glow)"/>
+
+  <!-- 更精细的数据流动效果 -->
+  <g opacity="0.7">
+    <path d="M50,92 L70,92 L80,82 L100,82 L110,92 L130,92 L140,82 L160,82"
+          fill="none" stroke="#5a9ee2" stroke-width="1.5" stroke-dasharray="3,2"/>
+    <path d="M60,102 L80,102 L90,112 L110,112 L120,102 L140,102 L150,112 L170,112"
+          fill="none" stroke="#5a9ee2" stroke-width="1.5" stroke-dasharray="3,2"/>
+    <path d="M120,38 C140,48 150,70 130,90"
+          fill="none" stroke="#5a9ee2" stroke-width="1" stroke-dasharray="2,2"/>
+    <path d="M100,38 C80,58 90,80 110,90"
+          fill="none" stroke="#5a9ee2" stroke-width="1" stroke-dasharray="2,2"/>
+  </g>
+
+  <!-- 改进的中心科技图案 -->
+  <g transform="translate(120,75)">
+    <circle r="18" fill="none" stroke="url(#techGradient)" stroke-width="1.5" stroke-dasharray="4,2"/>
+    <circle r="12" fill="none" stroke="url(#techGradient)" stroke-width="1.5" opacity="0.7"/>
+    <circle r="6" fill="url(#techGradient)" opacity="0.9"/>
+
+    <!-- 优化的连接线 -->
+    <line x1="-18" y1="0" x2="-25" y2="0" stroke="url(#techGradient)" stroke-width="1.5"/>
+    <line x1="18" y1="0" x2="25" y2="0" stroke="url(#techGradient)" stroke-width="1.5"/>
+    <line x1="0" y1="-18" x2="0" y2="-25" stroke="url(#techGradient)" stroke-width="1.5"/>
+    <line x1="0" y1="18" x2="0" y2="25" stroke="url(#techGradient)" stroke-width="1.5"/>
+
+    <line x1="-12" y1="-12" x2="-17" y2="-17" stroke="url(#techGradient)" stroke-width="1" opacity="0.7"/>
+    <line x1="12" y1="-12" x2="17" y2="-17" stroke="url(#techGradient)" stroke-width="1" opacity="0.7"/>
+    <line x1="-12" y1="12" x2="-17" y2="17" stroke="url(#techGradient)" stroke-width="1" opacity="0.7"/>
+    <line x1="12" y1="12" x2="17" y2="17" stroke="url(#techGradient)" stroke-width="1" opacity="0.7"/>
+  </g>
+
+  <!-- 智能元素 - 更简洁的设计 -->
+  <circle cx="105" cy="70" r="2.5" fill="#4a90e2"/>
+  <circle cx="135" cy="70" r="2.5" fill="#4a90e2"/>
+
+
+  <!-- 添加额外的连接点 -->
+  <circle cx="90" cy="65" r="1.5" fill="#4a90e2"/>
+  <circle cx="150" cy="65" r="1.5" fill="#4a90e2"/>
+  <circle cx="120" cy="110" r="1.5" fill="#4a90e2"/>
+  <circle cx="85" cy="100" r="1.5" fill="#4a90e2"/>
+  <circle cx="155" cy="100" r="1.5" fill="#4a90e2"/>
+</svg>
