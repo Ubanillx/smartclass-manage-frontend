@@ -16,7 +16,7 @@ export async function addUserUsingPost(body: API.UserAddRequest, options?: { [ke
 
 /** deleteUser POST /api/user/delete */
 export async function deleteUserUsingPost(
-  body: API.DeleteRequest,
+  body: API.DeleteRequest1,
   options?: { [key: string]: any },
 ) {
   return request<API.BaseResponseBoolean_>('/api/user/delete', {
@@ -112,6 +112,21 @@ export async function userLoginUsingPost(
   });
 }
 
+/** userLoginByPhone POST /api/user/login/phone */
+export async function userLoginByPhoneUsingPost(
+  body: API.UserLoginByPhoneRequest,
+  options?: { [key: string]: any },
+) {
+  return request<API.BaseResponseLoginUserVO_>('/api/user/login/phone', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  });
+}
+
 /** userLoginByWxOpen GET /api/user/login/wx_open */
 export async function userLoginByWxOpenUsingGet(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
@@ -141,6 +156,21 @@ export async function userRegisterUsingPost(
   options?: { [key: string]: any },
 ) {
   return request<API.BaseResponseLong_>('/api/user/register', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** userRegisterByPhone POST /api/user/register/phone */
+export async function userRegisterByPhoneUsingPost(
+  body: API.UserRegisterByPhoneRequest,
+  options?: { [key: string]: any },
+) {
+  return request<API.BaseResponseLong_>('/api/user/register/phone', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

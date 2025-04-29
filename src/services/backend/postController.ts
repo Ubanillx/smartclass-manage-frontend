@@ -16,7 +16,7 @@ export async function addPostUsingPost(body: API.PostAddRequest, options?: { [ke
 
 /** deletePost POST /api/post/delete */
 export async function deletePostUsingPost(
-  body: API.DeleteRequest,
+  body: API.DeleteRequest1,
   options?: { [key: string]: any },
 ) {
   return request<API.BaseResponseBoolean_>('/api/post/delete', {
@@ -40,6 +40,14 @@ export async function editPostUsingPost(
       'Content-Type': 'application/json',
     },
     data: body,
+    ...(options || {}),
+  });
+}
+
+/** testEsIndex GET /api/post/es/test */
+export async function testEsIndexUsingGet2(options?: { [key: string]: any }) {
+  return request<API.BaseResponseBoolean_>('/api/post/es/test', {
+    method: 'GET',
     ...(options || {}),
   });
 }
