@@ -1,0 +1,95 @@
+/* 弹窗样式 */
+.modalWrapper {
+  :global {
+    .ant-modal-content {
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    
+    .ant-modal-header {
+      padding: 16px 24px;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    
+    .ant-modal-body {
+      max-height: 70vh;
+      overflow-y: auto;
+      padding: 24px;
+    }
+    
+    .ant-form-item-label {
+      font-weight: 500;
+      text-align: right;
+    }
+
+    .ant-typography.ant-typography-h5 {
+      color: #1890ff;
+      margin-bottom: 0;
+      text-align: left;
+      padding-left: 8px;
+    }
+
+    .ant-form-item {
+      margin-bottom: 16px;
+    }
+
+    .ant-form-item-control-input-content {
+      text-align: left;
+      
+      .ant-input, .ant-select {
+        border-radius: 4px;
+        text-align: left;
+      }
+    }
+
+    .ant-btn-primary {
+      border-radius: 4px;
+      margin-top: 12px;
+    }
+    
+    .ant-col-24 .ant-typography {
+      margin-left: 0;
+      padding-left: 8px;
+    }
+  }
+}
+
+/* 头像上传样式 */
+.avatarUploader {
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  .avatarUpload {
+    :global {
+      .ant-upload {
+        margin: 16px 0;
+        width: 96px;
+        height: 96px;
+        border-radius: 50%;
+        overflow: hidden;
+        background-color: #fafafa;
+        border: 1px dashed #d9d9d9;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        transition: all 0.3s;
+        
+        &:hover {
+          border-color: #1890ff;
+        }
+      }
+    }
+  }
+  
+  .uploadButton {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    color: #999;
+  }
+} 
