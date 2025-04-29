@@ -15,8 +15,8 @@ const Settings: ProLayoutProps & {
   fixedHeader: false,
   fixSiderbar: true,
   colorWeak: false,
-  title: '智星云课',
-  logo: './logo.svg',
+  title: '智云星课',
+  logo: '/logo.svg',
   pwa: true,
   iconfontUrl: '',
   token: {

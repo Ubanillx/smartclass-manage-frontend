@@ -129,7 +129,7 @@ export default defineConfig({
   openAPI: [
     {
       requestLibPath: "import { request } from '@umijs/max'",
-      schemaPath: 'http://localhost:12345/api/v2/api-docs',
+      schemaPath: 'http://10.16.62.100:12345/api/v2/api-docs',
       projectName: 'backend',
     },
   ],
