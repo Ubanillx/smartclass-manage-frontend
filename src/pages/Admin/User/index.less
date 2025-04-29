@@ -1,0 +1,68 @@
+/* 用户管理页面样式 */
+.tableRow {
+  transition: all 0.3s;
+  
+  &:hover {
+    background-color: #f5f5f5;
+  }
+}
+
+/* 查询区域样式 */
+.tableSearch {
+  :global {
+    .ant-form-item {
+      margin-bottom: 16px;
+    }
+    
+    .ant-input-group-wrapper {
+      width: 100%;
+    }
+    
+    .ant-form-item-label {
+      font-weight: 500;
+    }
+  }
+}
+
+/* Card样式 */
+:global {
+  .ant-card {
+    box-shadow: 0 1px 2px -2px rgba(0, 0, 0, 0.16), 
+                0 3px 6px 0 rgba(0, 0, 0, 0.12), 
+                0 5px 12px 4px rgba(0, 0, 0, 0.09);
+    border-radius: 8px;
+  }
+
+  .ant-pro-table-search {
+    margin-bottom: 16px;
+    padding: 16px 16px 0;
+    background-color: #ffffff;
+    border-radius: 8px;
+  }
+
+  .ant-pro-card {
+    border-radius: 8px;
+  }
+
+  .ant-pro-table .ant-table-tbody > tr > td {
+    padding: 12px 8px;
+  }
+
+  .ant-pro-table .ant-table-thead > tr > th {
+    background-color: #fafafa;
+    font-weight: 500;
+  }
+  
+  /* 分组标签样式 */
+  .ant-pro-form-group-title {
+    font-size: 14px;
+    color: #1890ff;
+    font-weight: bold;
+  }
+  
+  .ant-pro-form-group-container {
+    border-bottom: 1px dashed #f0f0f0;
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+  }
+} 
