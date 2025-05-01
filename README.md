@@ -4,6 +4,12 @@
 
 智星云课管理系统是一个智能化教育平台的前端管理系统，基于React、Ant Design Pro和Umi框架开发。该系统提供了丰富的数据可视化功能，用于监控和分析教育平台的运营情况，包括用户活跃度、课程完成率、班级活跃度等关键指标，帮助教育机构实时掌握平台运营数据，优化教学效果。
 
+作为一个完整的教育管理平台，智星云课系统整合了课程管理、用户管理、学习资源管理和社区互动等多个功能模块，为教育机构提供一站式数字化解决方案。系统采用现代化前端架构，支持响应式设计，确保在各种设备上都能提供良好的用户体验。
+
+平台的数据分析功能深度整合了ECharts图表库，实现了多维度的数据可视化展示，帮助教育管理者从宏观和微观两个层面理解平台运营状况。系统还支持国际化，可根据需求切换中英文界面，满足不同地区用户的需求。
+
+智星云课前端管理系统采用模块化的设计理念，各功能模块高度解耦，便于维护和扩展。系统使用TypeScript进行开发，提供了类型安全保障，有效减少开发过程中的错误。前端与后端通过RESTful API进行通信，支持OpenAPI规范，便于接口管理和文档生成。
+
 ## 技术栈
 
 - **框架**: React 18, UmiJS 4.x, Ant Design Pro
@@ -13,6 +19,24 @@
 - **状态管理**: Umi Max内置状态管理
 - **构建工具**: Max CLI (基于UmiJS)
 - **样式解决方案**: Less, CSS-in-JS (Emotion)
+- **网络请求**: Axios, useRequest
+- **国际化**: i18n
+- **测试工具**: Jest
+- **代码规范**: ESLint, Prettier
+- **文档生成**: OpenAPI
+
+## 系统特点
+
+- **响应式设计**: 适配各种屏幕尺寸，提供一致的用户体验
+- **模块化架构**: 功能模块高度解耦，便于维护和扩展
+- **数据驱动**: 丰富的数据可视化展示，支持实时监控和分析
+- **权限管理**: 细粒度的权限控制系统，保障数据安全
+- **主题定制**: 支持明暗主题切换，可自定义主题色彩
+- **国际化**: 支持中英文界面切换，满足不同地区用户需求
+- **Mock数据**: 内置Mock数据服务，支持离线开发和测试
+- **性能优化**: 路由级代码分割、图片懒加载、组件按需加载
+- **SEO友好**: 预渲染和服务端渲染支持，提升搜索引擎索引效率
+- **容器化部署**: 提供Docker配置，支持容器化部署
 
 ## 功能模块
 
@@ -67,8 +91,8 @@ src/
 
 ## 环境要求
 
-- Node.js >= 12.0.0
-- yarn 或 npm 或 pnpm 包管理器
+- Node.js >= 18.0.0
+- yarn 包管理器
 
 ## 安装与运行
 
@@ -77,44 +101,97 @@ src/
 ```bash
 # 使用yarn
 yarn install
-
-# 或使用npm
-npm install
-
-# 或使用pnpm
-pnpm install
 ```
 
 ### 开发模式
 
 ```bash
 # 开发环境启动
-npm run start:dev
+yarn start:dev
 
 # 无mock数据启动
-npm run start:no-mock
+yarn start:no-mock
 
 # 测试环境启动
-npm run start:test
+yarn start:test
 
 # 预发布环境启动
-npm run start:pre
+yarn start:pre
 ```
 
 ### 构建与部署
 
 ```bash
 # 构建生产环境
-npm run build
+yarn build
 
 # 预览构建结果
-npm run preview
+yarn preview
 
 # 分析构建结果
-npm run analyze
+yarn analyze
+```
 
-# 部署到GitHub Pages
-npm run deploy
+## Docker部署
+
+项目已配置Docker相关文件，支持容器化部署。
+
+### 文件说明
+
+- `Dockerfile`: 用于构建前端应用的Docker镜像，基于Node.js 18和Nginx
+- `nginx.conf`: Nginx配置文件，用于静态文件服务和API代理
+- `docker-compose.yml`: Docker Compose配置文件，包含前端和后端服务
+- `docker-compose.frontend-only.yml`: 仅包含前端服务的Docker Compose配置文件
+- `.dockerignore`: 排除不需要复制到Docker镜像中的文件
+
+### 部署方式
+
+#### 方式一：完整部署（前端+后端）
+
+如果你已经有了后端服务的Docker镜像，可以使用此方式部署：
+
+```bash
+# 启动服务
+docker-compose up -d
+
+# 查看日志
+docker-compose logs -f
+```
+
+注意：需要先确保后端服务的Docker镜像已经构建好，并且修改`docker-compose.yml`中的`api`服务配置。
+
+#### 方式二：仅部署前端
+
+如果你只想部署前端服务，可以使用此方式：
+
+```bash
+# 启动服务
+docker-compose -f docker-compose.frontend-only.yml up -d
+
+# 查看日志
+docker-compose -f docker-compose.frontend-only.yml logs -f
+```
+
+注意：需要修改`docker-compose.frontend-only.yml`中的`API_URL`环境变量，指向真实的后端API地址。
+
+### 自定义Docker配置
+
+#### 修改API地址
+
+在`docker-compose.yml`或`docker-compose.frontend-only.yml`中修改`API_URL`环境变量：
+
+```yaml
+environment:
+  - API_URL=http://你的后端地址:端口
+```
+
+#### 修改端口映射
+
+默认前端服务映射到主机的80端口，如需修改，请在docker-compose文件中更改：
+
+```yaml
+ports:
+  - "新端口:80"
 ```
 
 ## 代码规范
@@ -123,13 +200,13 @@ npm run deploy
 
 ```bash
 # 代码检查
-npm run lint
+yarn lint
 
 # 自动修复代码问题
-npm run lint:fix
+yarn lint:fix
 
 # 代码格式化
-npm run prettier
+yarn prettier
 ```
 
 ## 数据可视化功能
@@ -143,19 +220,15 @@ npm run prettier
 - 热力图：展示周内学习时段分布等热度数据
 - 玫瑰图：展示学科成绩分布等极坐标数据
 
-## 目前开发状态
-
-项目正在积极开发中。主要数据看板功能已完成，其他管理功能正在实现中。
-
 ## 后端API接口
 
-系统已集成以下后端API服务：
+系统默认后端API服务地址为：http://10.16.62.100:12345
 
-- 用户管理相关API
-- 课程管理相关API
-- 学习资源相关API
-- AI分身助教相关API
-- 社区互动相关API
+## 常见问题
+
+1. 如果遇到API请求代理问题，请检查`config/proxy.ts`和Docker环境下的`nginx.conf`中的代理配置
+2. 如果构建失败，请检查Node.js版本(>=18)和yarn版本是否兼容
+3. 如果开发模式下没有数据，请检查后端服务是否正常运行
 
 ## 贡献指南
 
@@ -164,8 +237,3 @@ npm run prettier
 3. 提交更改 (`git commit -m 'Add some amazing feature'`)
 4. 推送分支 (`git push origin feature/amazing-feature`)
 5. 创建Pull Request
-
-
-
-
-
