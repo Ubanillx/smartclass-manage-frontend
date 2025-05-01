@@ -5,16 +5,30 @@ FROM node:18-alpine as builder
 WORKDIR /app
 
 # 复制项目依赖文件
-COPY package.json yarn.lock ./
+COPY package.json ./
+COPY *.lock* ./
+COPY pnpm-lock.yaml* ./
 
 # 安装依赖
-RUN npm install -g yarn && yarn install
+RUN if [ -f yarn.lock ]; then \
+        npm install -g yarn && yarn install; \
+    elif [ -f pnpm-lock.yaml ]; then \
+        npm install -g pnpm && pnpm install; \
+    else \
+        npm install; \
+    fi
 
 # 复制所有文件
 COPY . .
 
 # 构建应用
-RUN yarn build
+RUN if [ -f yarn.lock ]; then \
+        yarn build; \
+    elif [ -f pnpm-lock.yaml ]; then \
+        pnpm build; \
+    else \
+        npm run build; \
+    fi
 
 # 生产阶段
 FROM nginx:alpine
