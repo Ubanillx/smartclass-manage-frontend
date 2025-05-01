@@ -253,13 +253,6 @@ const UpdateModal: React.FC<Props> = (props) => {
         <div className="fullscreen-header">
           <div className="fullscreen-title">全屏编辑</div>
           <Space>
-            <span style={{ fontSize: '12px', color: '#999' }}>按<span className="shortcut-tip">ESC</span>退出全屏</span>
-            <Button onClick={handleCancel} icon={<FullscreenExitOutlined />}>
-              退出全屏
-            </Button>
-            <Button type="primary" loading={submitting} onClick={handleSubmit}>
-              保存
-            </Button>
           </Space>
         </div>
         <div className="fullscreen-content">
