@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  # 前端应用
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: smartclass-manage-frontend
+    restart: always
+    ports:
+      - "80:80"
+    environment:
+      - API_URL=http://api:12345 # 这里的api是后端服务的服务名
+    networks:
+      - smartclass-network
+    depends_on:
+      - api
+
+  # 后端API服务（占位，需根据实际后端项目调整）
+  api:
+    image: smartclass-api:latest # 根据实际后端镜像调整
+    container_name: smartclass-api
+    restart: always
+    ports:
+      - "12345:12345"
+    networks:
+      - smartclass-network
+    # 可根据需要添加环境变量和数据卷挂载
+    # environment:
+    #   - DB_HOST=db
+    #   - DB_PORT=3306
+    # volumes:
+    #   - ./api-data:/app/data
+
+networks:
+  smartclass-network:
+    driver: bridge 

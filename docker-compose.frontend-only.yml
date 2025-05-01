@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  # 仅前端应用
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: smartclass-manage-frontend
+    restart: always
+    ports:
+      - "80:80"
+    environment:
+      # 这里配置实际的后端API地址
+      - API_URL=http://10.16.62.100:12345
+    volumes:
+      # 可选：将nginx配置挂载出来，便于动态修改
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf 
