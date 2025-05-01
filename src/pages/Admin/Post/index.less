@@ -1,0 +1,165 @@
+// 帖子管理页面样式
+.post-management {
+  .ant-pro-table-search {
+    margin-bottom: 16px;
+    padding: 24px 24px 0;
+    background: #fff;
+    border-radius: 2px;
+  }
+
+  .ant-tag {
+    margin: 2px;
+  }
+
+  .ant-table-row {
+    .ant-typography {
+      max-width: 400px;
+      min-width: 200px;
+    }
+  }
+
+  .ant-card {
+    .ant-card-body {
+      padding: 24px;
+    }
+  }
+
+  .ant-table-row:hover {
+    .ant-btn-icon-only {
+      visibility: visible;
+    }
+  }
+
+  .ant-btn-icon-only {
+    visibility: hidden;
+  }
+
+  // 帖子内容样式
+  .post-content {
+    max-height: 80px;
+    min-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
+
+  // 标签样式
+  .post-tags {
+    margin-top: 8px;
+    
+    .ant-tag {
+      margin-right: 4px;
+      margin-bottom: 4px;
+    }
+  }
+
+  // 操作按钮样式
+  .action-buttons {
+    a {
+      margin-right: 12px;
+      
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+
+  // 确保标题和内容有足够的最小宽度
+  .ant-table-cell {
+    &:nth-child(2) > div > div, // 标题列
+    &:nth-child(3) .ant-typography { // 内容列
+      min-width: 200px;
+      display: block;
+    }
+  }
+}
+
+.post-content-preview {
+  max-width: 400px;
+  max-height: 120px;
+  overflow: hidden;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30px;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
+  }
+
+  pre {
+    margin: 0;
+    padding: 8px;
+    max-height: 80px;
+    overflow: hidden;
+    border-radius: 4px;
+    font-size: 12px;
+  }
+
+  code {
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  p {
+    margin-bottom: 8px;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    margin-top: 0;
+    margin-bottom: 8px;
+    font-size: inherit;
+    font-weight: bold;
+  }
+
+  img {
+    max-width: 100%;
+    max-height: 60px;
+  }
+
+  blockquote {
+    margin: 0 0 8px;
+    padding-left: 8px;
+    border-left: 3px solid #eee;
+    color: #666;
+  }
+
+  ul, ol {
+    margin: 0 0 8px;
+    padding-left: 16px;
+  }
+
+  hr {
+    margin: 8px 0;
+    border: 0;
+    border-top: 1px solid #eee;
+  }
+
+  table {
+    border-collapse: collapse;
+    max-width: 100%;
+    font-size: 12px;
+  }
+
+  th, td {
+    border: 1px solid #ddd;
+    padding: 4px;
+    text-align: left;
+  }
+
+  th {
+    background-color: #f5f5f5;
+  }
+}
+
+// 数学公式样式适配
+.katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 8px 0;
+} 

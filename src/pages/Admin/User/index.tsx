@@ -297,7 +297,7 @@ const UserAdminPage: React.FC = () => {
       width: 120,
       fixed: 'right',
       render: (_, record) => (
-        <Space size="middle">
+        <Space direction="vertical" size="small" style={{ width: '100%' }}>
           <Button
             type="link"
             icon={<EditOutlined />}
@@ -305,6 +305,7 @@ const UserAdminPage: React.FC = () => {
               setCurrentRow(record);
               setUpdateModalVisible(true);
             }}
+            style={{ padding: '0px 0px' }}
           >
             修改
           </Button>
@@ -314,7 +315,7 @@ const UserAdminPage: React.FC = () => {
             okText="确定"
             cancelText="取消"
           >
-            <Button type="link" danger icon={<DeleteOutlined />}>
+            <Button type="link" danger icon={<DeleteOutlined />} style={{ padding: '0px 0px' }}>
             删除
             </Button>
           </Popconfirm>

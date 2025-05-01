@@ -1,0 +1,75 @@
+// 每日美文管理页面样式
+.daily-article-management {
+  .ant-pro-table-search {
+    margin-bottom: 16px;
+    padding: 24px 24px 0;
+    background: #fff;
+    border-radius: 2px;
+  }
+
+  .ant-tag {
+    margin: 2px;
+  }
+
+  .ant-table-row {
+    .ant-typography {
+      max-width: 400px;
+    }
+  }
+
+  .ant-card {
+    .ant-card-body {
+      padding: 24px;
+    }
+  }
+
+  .ant-table-row:hover {
+    .ant-btn-icon-only {
+      visibility: visible;
+    }
+  }
+
+  .ant-btn-icon-only {
+    visibility: hidden;
+  }
+
+  // 文章内容样式
+  .article-content {
+    max-height: 80px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
+
+  // 标签样式
+  .article-tags {
+    margin-top: 8px;
+    
+    .ant-tag {
+      margin-right: 4px;
+      margin-bottom: 4px;
+    }
+  }
+
+  // 操作按钮样式
+  .action-buttons {
+    a {
+      margin-right: 12px;
+      
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+
+  // 缩略图样式
+  .article-cover {
+    width: 120px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-top: 8px;
+  }
+} 
