@@ -30,7 +30,7 @@ RUN if [ -f yarn.lock ]; then \
         npm run build; \
     fi
 
-# 生产阶段
+# 生产阶段 - 注意：本项目只使用HTTP，不需要HTTPS配置
 FROM nginx:alpine
 
 # 安装证书相关工具
