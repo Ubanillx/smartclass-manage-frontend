@@ -33,6 +33,12 @@ RUN if [ -f yarn.lock ]; then \
 # 生产阶段
 FROM nginx:alpine
 
+# 安装证书相关工具
+RUN apk update && apk add --no-cache ca-certificates openssl
+
+# 创建证书目录
+RUN mkdir -p /app/cert
+
 # 复制构建产物到Nginx服务目录
 COPY --from=builder /app/dist /usr/share/nginx/html
 
