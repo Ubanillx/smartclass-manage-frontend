@@ -9,13 +9,4 @@ services:
     container_name: smartclass-manage-frontend
     restart: always
     ports:
-      - "80:80"
-    environment:
-      # 线上后端API地址
-      - API_URL=http://backend.smartclass.ubanillx.cn:8081
-    networks:
-      - smartclass-network
-
-networks:
-  smartclass-network:
-    driver: bridge 
+      - "80:80" 
