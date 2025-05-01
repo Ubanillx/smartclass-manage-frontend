@@ -113,11 +113,12 @@ const AiAvatarManagement: React.FC = () => {
       dataIndex: 'description',
       valueType: 'textarea',
       hideInSearch: true,
+      width: 200,
       formItemProps: {
         rules: [{ required: true, message: '请输入AI分身描述' }]
       },
       render: (_, record) => (
-        <Paragraph ellipsis={{ rows: 2 }} style={{ marginBottom: 0 }}>
+        <Paragraph ellipsis={{ rows: 2 }} style={{ marginBottom: 0, minWidth: 150 }}>
           {record.description}
         </Paragraph>
       ),
@@ -127,8 +128,9 @@ const AiAvatarManagement: React.FC = () => {
       dataIndex: 'abilities',
       valueType: 'textarea',
       hideInSearch: true,
+      width: 200,
       render: (_, record) => (
-        <Paragraph ellipsis={{ rows: 2 }} style={{ marginBottom: 0 }}>
+        <Paragraph ellipsis={{ rows: 2 }} style={{ marginBottom: 0, minWidth: 150 }}>
           {record.abilities}
         </Paragraph>
       ),
@@ -138,8 +140,9 @@ const AiAvatarManagement: React.FC = () => {
       dataIndex: 'personality',
       valueType: 'textarea',
       hideInSearch: true,
+      width: 200,
       render: (_, record) => (
-        <Paragraph ellipsis={{ rows: 2 }} style={{ marginBottom: 0 }}>
+        <Paragraph ellipsis={{ rows: 2 }} style={{ marginBottom: 0, minWidth: 150 }}>
           {record.personality}
         </Paragraph>
       ),
@@ -323,7 +326,8 @@ const AiAvatarManagement: React.FC = () => {
             pageSizeOptions: ['10', '20', '50'],
             showTotal: (total) => `共 ${total} 条记录`,
           }}
-          scroll={{ x: 1500 }}
+          scroll={{ x: 1600 }}
+          tableLayout="fixed"
           columns={columns}
         />
         
