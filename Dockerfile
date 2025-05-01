@@ -1,5 +1,5 @@
 # 构建阶段
-FROM node:18-alpine as builder
+FROM node:18.17-alpine as builder
 
 # 设置工作目录
 WORKDIR /app
@@ -10,40 +10,26 @@ COPY *.lock* ./
 COPY pnpm-lock.yaml* ./
 
 # 安装依赖
-RUN if [ -f yarn.lock ]; then \
-        npm install -g yarn && yarn install; \
-    elif [ -f pnpm-lock.yaml ]; then \
-        npm install -g pnpm && pnpm install; \
-    else \
-        npm install; \
-    fi
+RUN npm install
 
 # 复制所有文件
+
 COPY . .
 
 # 构建应用
-RUN if [ -f yarn.lock ]; then \
-        yarn build; \
-    elif [ -f pnpm-lock.yaml ]; then \
-        pnpm build; \
-    else \
-        npm run build; \
-    fi
+RUN npm run build
 
-# 生产阶段 - 注意：本项目只使用HTTP，不需要HTTPS配置
-FROM nginx:alpine
-
-# 安装证书相关工具
-RUN apk update && apk add --no-cache ca-certificates openssl
-
-# 创建证书目录
-RUN mkdir -p /app/cert
+FROM nginx:1.25-alpine
 
 # 复制构建产物到Nginx服务目录
 COPY --from=builder /app/dist /usr/share/nginx/html
 
 # 复制Nginx配置
 COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+# 清理缓存减小镜像体积
+RUN rm -rf /var/cache/apk/* && \
+    rm -rf /tmp/*
 
 # 暴露端口
 EXPOSE 80
