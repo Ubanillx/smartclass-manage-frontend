@@ -304,6 +304,12 @@ declare namespace API {
     message?: string;
   };
 
+  type BaseResponseListUserFeedbackReplyVO_ = {
+    code?: number;
+    data?: UserFeedbackReplyVO[];
+    message?: string;
+  };
+
   type BaseResponseListUserLevelVO_ = {
     code?: number;
     data?: UserLevelVO[];
@@ -448,6 +454,18 @@ declare namespace API {
     message?: string;
   };
 
+  type BaseResponsePageUserFeedback_ = {
+    code?: number;
+    data?: PageUserFeedback_;
+    message?: string;
+  };
+
+  type BaseResponsePageUserFeedbackReplyVO_ = {
+    code?: number;
+    data?: PageUserFeedbackReplyVO_;
+    message?: string;
+  };
+
   type BaseResponsePageUserLearningRecordVO_ = {
     code?: number;
     data?: PageUserLearningRecordVO_;
@@ -517,6 +535,12 @@ declare namespace API {
   type BaseResponseUserDailyWord_ = {
     code?: number;
     data?: UserDailyWord;
+    message?: string;
+  };
+
+  type BaseResponseUserFeedback_ = {
+    code?: number;
+    data?: UserFeedback;
     message?: string;
   };
 
@@ -1225,6 +1249,11 @@ declare namespace API {
     wordId: number;
   };
 
+  type getUserFeedbackByIdUsingGETParams = {
+    /** id */
+    id?: number;
+  };
+
   type getUserHistoryPageUsingGETParams = {
     /** current */
     current?: number;
@@ -1466,6 +1495,11 @@ declare namespace API {
     userRating?: number;
   };
 
+  type listRepliesUsingGETParams = {
+    /** feedbackId */
+    feedbackId: number;
+  };
+
   type listReviewsByPageUsingGETParams = {
     /** courseId */
     courseId: number;
@@ -1518,6 +1552,11 @@ declare namespace API {
   type MapStringObject_1 = true;
 
   type MapStringObject_2 = true;
+
+  type markAsReadUsingPOSTParams = {
+    /** replyId */
+    replyId: number;
+  };
 
   type markWordAsStudiedUsingPOST1Params = {
     /** wordId */
@@ -1781,6 +1820,32 @@ declare namespace API {
     total?: number;
   };
 
+  type PageUserFeedback_ = {
+    countId?: string;
+    current?: number;
+    maxLimit?: number;
+    optimizeCountSql?: boolean;
+    orders?: OrderItem[];
+    pages?: number;
+    records?: UserFeedback[];
+    searchCount?: boolean;
+    size?: number;
+    total?: number;
+  };
+
+  type PageUserFeedbackReplyVO_ = {
+    countId?: string;
+    current?: number;
+    maxLimit?: number;
+    optimizeCountSql?: boolean;
+    orders?: OrderItem[];
+    pages?: number;
+    records?: UserFeedbackReplyVO[];
+    searchCount?: boolean;
+    size?: number;
+    total?: number;
+  };
+
   type PageUserLearningRecordVO_ = {
     countId?: string;
     current?: number;
@@ -1847,7 +1912,9 @@ declare namespace API {
   };
 
   type Post = {
+    city?: string;
     content?: string;
+    country?: string;
     createTime?: string;
     favourNum?: number;
     id?: number;
@@ -1855,17 +1922,20 @@ declare namespace API {
     tags?: string;
     thumbNum?: number;
     title?: string;
+    type?: string;
     updateTime?: string;
     userId?: number;
   };
 
   type PostAddRequest = {
+    clientIp?: string;
     content?: string;
     tags?: string[];
     title?: string;
   };
 
   type PostEditRequest = {
+    clientIp?: string;
     content?: string;
     id?: number;
     tags?: string[];
@@ -1913,7 +1983,9 @@ declare namespace API {
   };
 
   type PostVO = {
+    city?: string;
     content?: string;
+    country?: string;
     createTime?: string;
     favourNum?: number;
     hasFavour?: boolean;
@@ -2136,8 +2208,6 @@ declare namespace API {
   };
 
   type uploadFileUsingPOSTParams = {
-    base64Data?: string;
-    biz?: string;
     description?: string;
     filename?: string;
   };
@@ -2236,6 +2306,81 @@ declare namespace API {
     updateTime?: string;
     userId?: number;
     wordId?: number;
+  };
+
+  type UserFeedback = {
+    adminId?: number;
+    attachment?: string;
+    content?: string;
+    createTime?: string;
+    feedbackType?: string;
+    id?: number;
+    isDelete?: number;
+    processTime?: string;
+    status?: number;
+    title?: string;
+    updateTime?: string;
+    userId?: number;
+  };
+
+  type UserFeedbackAddRequest = {
+    attachment?: string;
+    content?: string;
+    feedbackType?: string;
+    title?: string;
+  };
+
+  type UserFeedbackProcessRequest = {
+    id?: number;
+    status?: number;
+  };
+
+  type UserFeedbackQueryRequest = {
+    current?: number;
+    feedbackType?: string;
+    pageSize?: number;
+    sortField?: string;
+    sortOrder?: string;
+    status?: number;
+    title?: string;
+    userId?: number;
+  };
+
+  type UserFeedbackReplyAddRequest = {
+    attachment?: string;
+    content?: string;
+    feedbackId?: number;
+  };
+
+  type UserFeedbackReplyQueryRequest = {
+    current?: number;
+    feedbackId?: number;
+    isRead?: number;
+    pageSize?: number;
+    senderId?: number;
+    senderRole?: number;
+    sortField?: string;
+    sortOrder?: string;
+  };
+
+  type UserFeedbackReplyVO = {
+    attachment?: string;
+    content?: string;
+    createTime?: string;
+    feedbackId?: number;
+    id?: number;
+    isRead?: number;
+    sender?: UserVO;
+    senderId?: number;
+    senderRole?: number;
+  };
+
+  type UserFeedbackUpdateRequest = {
+    attachment?: string;
+    content?: string;
+    feedbackType?: string;
+    id?: number;
+    title?: string;
   };
 
   type UserLearningRecordAddRequest = {
