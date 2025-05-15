@@ -19,7 +19,7 @@ export async function addCategoryUsingPost(
 
 /** deleteCategory POST /api/course/category/delete */
 export async function deleteCategoryUsingPost(
-  body: API.DeleteRequest1,
+  body: API.DeleteRequest,
   options?: { [key: string]: any },
 ) {
   return request<API.BaseResponseBoolean_>('/api/course/category/delete', {

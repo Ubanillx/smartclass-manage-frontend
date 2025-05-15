@@ -19,7 +19,7 @@ export async function addUserAiAvatarUsingPost(
 
 /** deleteUserAiAvatar POST /api/user_ai_avatar/delete */
 export async function deleteUserAiAvatarUsingPost(
-  body: API.DeleteRequest,
+  body: API.DeleteRequest1,
   options?: { [key: string]: any },
 ) {
   return request<API.BaseResponseBoolean_>('/api/user_ai_avatar/delete', {

@@ -33,7 +33,7 @@ export async function getTeacherCoursesUsingGet(
 
 /** deleteTeacher POST /api/teacher/delete */
 export async function deleteTeacherUsingPost(
-  body: API.DeleteRequest1,
+  body: API.DeleteRequest,
   options?: { [key: string]: any },
 ) {
   return request<API.BaseResponseBoolean_>('/api/teacher/delete', {

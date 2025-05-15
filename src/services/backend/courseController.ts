@@ -19,7 +19,7 @@ export async function addCourseUsingPost(
 
 /** deleteCourse POST /api/course/delete */
 export async function deleteCourseUsingPost(
-  body: API.DeleteRequest1,
+  body: API.DeleteRequest,
   options?: { [key: string]: any },
 ) {
   return request<API.BaseResponseBoolean_>('/api/course/delete', {

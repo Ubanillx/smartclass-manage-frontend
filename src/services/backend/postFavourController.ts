@@ -2,12 +2,12 @@
 /* eslint-disable */
 import { request } from '@umijs/max';
 
-/** doPostFavour POST /api/post_favour/ */
-export async function doPostFavourUsingPost(
+/** addFavour POST /api/post-favours */
+export async function addFavourUsingPost(
   body: API.PostFavourAddRequest,
   options?: { [key: string]: any },
 ) {
-  return request<API.BaseResponseInt_>('/api/post_favour/', {
+  return request<API.BaseResponseBoolean_>('/api/post-favours', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -17,32 +17,45 @@ export async function doPostFavourUsingPost(
   });
 }
 
-/** listFavourPostByPage POST /api/post_favour/list/page */
-export async function listFavourPostByPageUsingPost(
-  body: API.PostFavourQueryRequest,
+/** hasFavour GET /api/post-favours/${param0} */
+export async function hasFavourUsingGet(
+  // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
+  params: API.hasFavourUsingGETParams,
   options?: { [key: string]: any },
 ) {
-  return request<API.BaseResponsePagePostVO_>('/api/post_favour/list/page', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    data: body,
+  const { postId: param0, ...queryParams } = params;
+  return request<API.BaseResponseBoolean_>(`/api/post-favours/${param0}`, {
+    method: 'GET',
+    params: { ...queryParams },
     ...(options || {}),
   });
 }
 
-/** listMyFavourPostByPage POST /api/post_favour/my/list/page */
-export async function listMyFavourPostByPageUsingPost(
-  body: API.PostQueryRequest,
+/** cancelFavour DELETE /api/post-favours/${param0} */
+export async function cancelFavourUsingDelete(
+  // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
+  params: API.cancelFavourUsingDELETEParams,
   options?: { [key: string]: any },
 ) {
-  return request<API.BaseResponsePagePostVO_>('/api/post_favour/my/list/page', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
+  const { postId: param0, ...queryParams } = params;
+  return request<API.BaseResponseBoolean_>(`/api/post-favours/${param0}`, {
+    method: 'DELETE',
+    params: { ...queryParams },
+    ...(options || {}),
+  });
+}
+
+/** listMyFavourPostByPage GET /api/post-favours/me/page */
+export async function listMyFavourPostByPageUsingGet(
+  // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
+  params: API.listMyFavourPostByPageUsingGETParams,
+  options?: { [key: string]: any },
+) {
+  return request<API.BaseResponsePagePostVO_>('/api/post-favours/me/page', {
+    method: 'GET',
+    params: {
+      ...params,
     },
-    data: body,
     ...(options || {}),
   });
 }

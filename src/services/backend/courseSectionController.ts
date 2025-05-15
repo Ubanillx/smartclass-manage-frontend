@@ -34,7 +34,7 @@ export async function getSectionCountUsingGet(
 
 /** deleteSection POST /api/course/section/delete */
 export async function deleteSectionUsingPost(
-  body: API.DeleteRequest1,
+  body: API.DeleteRequest,
   options?: { [key: string]: any },
 ) {
   return request<API.BaseResponseBoolean_>('/api/course/section/delete', {

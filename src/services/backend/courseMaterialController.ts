@@ -19,7 +19,7 @@ export async function addMaterialUsingPost(
 
 /** deleteMaterial POST /api/course/material/delete */
 export async function deleteMaterialUsingPost(
-  body: API.DeleteRequest1,
+  body: API.DeleteRequest,
   options?: { [key: string]: any },
 ) {
   return request<API.BaseResponseBoolean_>('/api/course/material/delete', {

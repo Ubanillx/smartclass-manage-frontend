@@ -1,23 +1,17 @@
 declare namespace API {
-  type addUserBadgeByAdminUsingPOSTParams = {
-    /** count */
-    count?: number;
-    /** userId */
-    userId: number;
+  type acceptFriendRequestUsingPOSTParams = {
+    /** id */
+    id: number;
   };
 
-  type addUserExperienceByAdminUsingPOSTParams = {
-    /** experience */
-    experience: number;
-    /** userId */
-    userId: number;
+  type adminDeletePostCommentReplyUsingDELETEParams = {
+    /** id */
+    id: number;
   };
 
-  type addUserPointsByAdminUsingPOSTParams = {
-    /** points */
-    points: number;
-    /** userId */
-    userId: number;
+  type adminDeletePostCommentUsingDELETEParams = {
+    /** id */
+    id: number;
   };
 
   type AiAvatarAddRequest = {
@@ -89,23 +83,6 @@ declare namespace API {
     coverImage?: string;
     endTime?: string;
     priority?: number;
-    startTime?: string;
-    status?: number;
-    title?: string;
-  };
-
-  type AnnouncementQueryRequest = {
-    adminId?: number;
-    content?: string;
-    coverImage?: string;
-    createTime?: string;
-    current?: number;
-    endTime?: string;
-    id?: number;
-    pageSize?: number;
-    priority?: number;
-    sortField?: string;
-    sortOrder?: string;
     startTime?: string;
     status?: number;
     title?: string;
@@ -220,6 +197,12 @@ declare namespace API {
     message?: string;
   };
 
+  type BaseResponseFriendRequestVO_ = {
+    code?: number;
+    data?: FriendRequestVO;
+    message?: string;
+  };
+
   type BaseResponseInt_ = {
     code?: number;
     data?: number;
@@ -280,6 +263,18 @@ declare namespace API {
     message?: string;
   };
 
+  type BaseResponseListFriendRelationshipVO_ = {
+    code?: number;
+    data?: FriendRelationshipVO[];
+    message?: string;
+  };
+
+  type BaseResponseListFriendRequestVO_ = {
+    code?: number;
+    data?: FriendRequestVO[];
+    message?: string;
+  };
+
   type BaseResponseListLong_ = {
     code?: number;
     data?: number[];
@@ -289,6 +284,12 @@ declare namespace API {
   type BaseResponseListMapStringObject_ = {
     code?: number;
     data?: MapStringObject_[];
+    message?: string;
+  };
+
+  type BaseResponseListPrivateChatSessionVO_ = {
+    code?: number;
+    data?: PrivateChatSessionVO[];
     message?: string;
   };
 
@@ -307,12 +308,6 @@ declare namespace API {
   type BaseResponseListUserFeedbackReplyVO_ = {
     code?: number;
     data?: UserFeedbackReplyVO[];
-    message?: string;
-  };
-
-  type BaseResponseListUserLevelVO_ = {
-    code?: number;
-    data?: UserLevelVO[];
     message?: string;
   };
 
@@ -335,6 +330,18 @@ declare namespace API {
   };
 
   type BaseResponseMapStringObject_ = {
+    code?: number;
+    data?: Record<string, any>;
+    message?: string;
+  };
+
+  type BaseResponseMapStringString_ = {
+    code?: number;
+    data?: Record<string, any>;
+    message?: string;
+  };
+
+  type BaseResponseObject_ = {
     code?: number;
     data?: Record<string, any>;
     message?: string;
@@ -418,15 +425,57 @@ declare namespace API {
     message?: string;
   };
 
+  type BaseResponsePageFriendRelationship_ = {
+    code?: number;
+    data?: PageFriendRelationship_;
+    message?: string;
+  };
+
+  type BaseResponsePageFriendRelationshipVO_ = {
+    code?: number;
+    data?: PageFriendRelationshipVO_;
+    message?: string;
+  };
+
+  type BaseResponsePageFriendRequest_ = {
+    code?: number;
+    data?: PageFriendRequest_;
+    message?: string;
+  };
+
+  type BaseResponsePageFriendRequestVO_ = {
+    code?: number;
+    data?: PageFriendRequestVO_;
+    message?: string;
+  };
+
   type BaseResponsePagePost_ = {
     code?: number;
     data?: PagePost_;
     message?: string;
   };
 
+  type BaseResponsePagePostCommentReplyVO_ = {
+    code?: number;
+    data?: PagePostCommentReplyVO_;
+    message?: string;
+  };
+
+  type BaseResponsePagePostCommentVO_ = {
+    code?: number;
+    data?: PagePostCommentVO_;
+    message?: string;
+  };
+
   type BaseResponsePagePostVO_ = {
     code?: number;
     data?: PagePostVO_;
+    message?: string;
+  };
+
+  type BaseResponsePagePrivateMessageVO_ = {
+    code?: number;
+    data?: PagePrivateMessageVO_;
     message?: string;
   };
 
@@ -466,24 +515,6 @@ declare namespace API {
     message?: string;
   };
 
-  type BaseResponsePageUserLearningRecordVO_ = {
-    code?: number;
-    data?: PageUserLearningRecordVO_;
-    message?: string;
-  };
-
-  type BaseResponsePageUserLevel_ = {
-    code?: number;
-    data?: PageUserLevel_;
-    message?: string;
-  };
-
-  type BaseResponsePageUserLevelVO_ = {
-    code?: number;
-    data?: PageUserLevelVO_;
-    message?: string;
-  };
-
   type BaseResponsePageUserVO_ = {
     code?: number;
     data?: PageUserVO_;
@@ -496,9 +527,27 @@ declare namespace API {
     message?: string;
   };
 
+  type BaseResponsePostCommentReplyVO_ = {
+    code?: number;
+    data?: PostCommentReplyVO;
+    message?: string;
+  };
+
+  type BaseResponsePostCommentVO_ = {
+    code?: number;
+    data?: PostCommentVO;
+    message?: string;
+  };
+
   type BaseResponsePostVO_ = {
     code?: number;
     data?: PostVO;
+    message?: string;
+  };
+
+  type BaseResponsePrivateChatSessionVO_ = {
+    code?: number;
+    data?: PrivateChatSessionVO;
     message?: string;
   };
 
@@ -544,34 +593,40 @@ declare namespace API {
     message?: string;
   };
 
-  type BaseResponseUserLearningRecordVO_ = {
-    code?: number;
-    data?: UserLearningRecordVO;
-    message?: string;
-  };
-
-  type BaseResponseUserLearningStats_ = {
-    code?: number;
-    data?: UserLearningStats;
-    message?: string;
-  };
-
-  type BaseResponseUserLevel_ = {
-    code?: number;
-    data?: UserLevel;
-    message?: string;
-  };
-
-  type BaseResponseUserLevelVO_ = {
-    code?: number;
-    data?: UserLevelVO;
-    message?: string;
-  };
-
   type BaseResponseUserVO_ = {
     code?: number;
     data?: UserVO;
     message?: string;
+  };
+
+  type cancelArticleFavourUsingDELETEParams = {
+    /** articleId */
+    articleId: number;
+  };
+
+  type cancelArticleThumbUsingDELETEParams = {
+    /** articleId */
+    articleId: number;
+  };
+
+  type cancelFavourUsingDELETEParams = {
+    /** postId */
+    postId: number;
+  };
+
+  type cancelThumbUsingDELETEParams = {
+    /** postId */
+    postId: number;
+  };
+
+  type cancelThumbWordUsingDELETEParams = {
+    /** wordId */
+    wordId: number;
+  };
+
+  type cancelWordStudiedUsingDELETEParams = {
+    /** wordId */
+    wordId: number;
   };
 
   type ChatMessageAddRequest = {
@@ -966,22 +1021,6 @@ declare namespace API {
     word?: string;
   };
 
-  type DailyWordQueryRequest = {
-    adminId?: number;
-    category?: string;
-    createTime?: string;
-    current?: number;
-    difficulty?: number;
-    id?: number;
-    pageSize?: number;
-    publishDateEnd?: string;
-    publishDateStart?: string;
-    sortField?: string;
-    sortOrder?: string;
-    translation?: string;
-    word?: string;
-  };
-
   type DailyWordUpdateRequest = {
     audioUrl?: string;
     category?: string;
@@ -1012,7 +1051,57 @@ declare namespace API {
     word?: string;
   };
 
+  type deleteAiAvatarUsingDELETEParams = {
+    /** id */
+    id: number;
+  };
+
+  type deleteAnnouncementUsingDELETEParams = {
+    /** id */
+    id: number;
+  };
+
   type deleteChapterUsingPOSTParams = {
+    /** id */
+    id: number;
+  };
+
+  type deleteDailyArticleUsingDELETEParams = {
+    /** id */
+    id: number;
+  };
+
+  type deleteDailyWordUsingDELETEParams = {
+    /** id */
+    id: number;
+  };
+
+  type deleteFriendByUserIdUsingDELETEParams = {
+    /** userId */
+    userId: number;
+  };
+
+  type deleteFriendRelationshipUsingDELETEParams = {
+    /** id */
+    id: number;
+  };
+
+  type deleteFriendRequestUsingDELETEParams = {
+    /** id */
+    id: number;
+  };
+
+  type deletePostCommentReplyUsingDELETEParams = {
+    /** id */
+    id: number;
+  };
+
+  type deletePostCommentUsingDELETEParams = {
+    /** id */
+    id: number;
+  };
+
+  type deletePostUsingDELETEParams = {
     /** id */
     id: number;
   };
@@ -1035,24 +1124,19 @@ declare namespace API {
     sessionId: string;
   };
 
+  type deleteUserFeedbackUsingDELETEParams = {
+    /** id */
+    id: number;
+  };
+
   type doArticleFavourUsingPOSTParams = {
     /** articleId */
     articleId: number;
   };
 
-  type doArticleThumbUsingPOSTParams = {
-    /** articleId */
-    articleId: number;
-  };
-
-  type doWordFavourUsingPOSTParams = {
-    /** wordId */
-    wordId: number;
-  };
-
-  type doWordThumbUsingPOSTParams = {
-    /** wordId */
-    wordId: number;
+  type editPostUsingPUTParams = {
+    /** id */
+    id: number;
   };
 
   type favoriteAiAvatarUsingPOSTParams = {
@@ -1062,14 +1146,85 @@ declare namespace API {
     isFavorite: number;
   };
 
+  type FriendRelationship = {
+    createTime?: string;
+    id?: number;
+    status?: string;
+    updateTime?: string;
+    userId1?: number;
+    userId2?: number;
+  };
+
+  type FriendRelationshipAddRequest = {
+    status?: string;
+    userId2?: number;
+  };
+
+  type FriendRelationshipUpdateRequest = {
+    id?: number;
+    status?: string;
+    userId?: number;
+  };
+
+  type FriendRelationshipVO = {
+    createTime?: string;
+    friendUser?: UserVO;
+    id?: number;
+    status?: string;
+    updateTime?: string;
+    userId1?: number;
+    userId2?: number;
+  };
+
+  type FriendRequest = {
+    createTime?: string;
+    id?: number;
+    message?: string;
+    receiverId?: number;
+    senderId?: number;
+    status?: string;
+    updateTime?: string;
+  };
+
+  type FriendRequestAddRequest = {
+    message?: string;
+    receiverId?: number;
+    senderId?: number;
+    status?: string;
+  };
+
+  type FriendRequestQueryRequest = {
+    current?: number;
+    message?: string;
+    pageSize?: number;
+    receiverId?: number;
+    senderId?: number;
+    sortField?: string;
+    sortOrder?: string;
+    status?: string;
+  };
+
+  type FriendRequestVO = {
+    createTime?: string;
+    id?: number;
+    message?: string;
+    receiverId?: number;
+    receiverUser?: UserVO;
+    senderId?: number;
+    senderUser?: UserVO;
+    status?: string;
+    statusDescription?: string;
+    updateTime?: string;
+  };
+
   type getAiAvatarByIdUsingGETParams = {
     /** id */
-    id?: number;
+    id: number;
   };
 
   type getAnnouncementVOByIdUsingGETParams = {
     /** id */
-    id?: number;
+    id: number;
   };
 
   type getCategoryByIdUsingGETParams = {
@@ -1109,12 +1264,24 @@ declare namespace API {
 
   type getDailyArticleVOByIdUsingGETParams = {
     /** id */
-    id?: number;
+    id: number;
   };
 
   type getDailyWordVOByIdUsingGETParams = {
     /** id */
+    id: number;
+  };
+
+  type getFriendRelationshipUsingGETParams = {
+    /** id */
     id?: number;
+    /** userId */
+    userId?: number;
+  };
+
+  type getFriendRequestByIdUsingGETParams = {
+    /** id */
+    id: number;
   };
 
   type getMaterialByIdUsingGETParams = {
@@ -1122,52 +1289,29 @@ declare namespace API {
     id?: number;
   };
 
-  type getMyDailyLearningStatsUsingGETParams = {
-    /** endDate */
-    endDate?: string;
-    /** startDate */
-    startDate?: string;
+  type getPostCommentByIdUsingGETParams = {
+    /** id */
+    id: number;
   };
 
-  type getMyLearningCountStatsUsingGETParams = {
-    /** endDate */
-    endDate?: string;
-    /** startDate */
-    startDate?: string;
-  };
-
-  type getMyLearningDurationStatsUsingGETParams = {
-    /** endDate */
-    endDate?: string;
-    /** startDate */
-    startDate?: string;
-  };
-
-  type getMyPointsAndExperienceStatsUsingGETParams = {
-    /** endDate */
-    endDate?: string;
-    /** startDate */
-    startDate?: string;
-  };
-
-  type getNextUserLevelUsingGETParams = {
-    /** currentLevel */
-    currentLevel?: number;
+  type getPostCommentReplyByIdUsingGETParams = {
+    /** id */
+    id: number;
   };
 
   type getPostVOByIdUsingGETParams = {
     /** id */
-    id?: number;
-  };
-
-  type getRandomWordUsingGETParams = {
-    /** difficulty */
-    difficulty?: number;
+    id: number;
   };
 
   type getRatingStatsUsingGETParams = {
     /** courseId */
     courseId: number;
+  };
+
+  type getReceivedFriendRequestsUsingGETParams = {
+    /** status */
+    status?: string;
   };
 
   type getRecentSessionsUsingGETParams = {
@@ -1204,6 +1348,21 @@ declare namespace API {
     courseId: number;
   };
 
+  type getSentFriendRequestsUsingGETParams = {
+    /** status */
+    status?: string;
+  };
+
+  type getSessionUnreadCountUsingGETParams = {
+    /** sessionId */
+    sessionId: number;
+  };
+
+  type getSessionWithUserUsingGETParams = {
+    /** targetUserId */
+    targetUserId: number;
+  };
+
   type getSubCategoriesUsingGETParams = {
     /** parentId */
     parentId: number;
@@ -1222,6 +1381,11 @@ declare namespace API {
   type getTeacherVOByIdUsingGETParams = {
     /** id */
     id?: number;
+  };
+
+  type getTodayWordUsingGETParams = {
+    /** difficulty */
+    difficulty?: number;
   };
 
   type getTotalDurationUsingGETParams = {
@@ -1251,7 +1415,7 @@ declare namespace API {
 
   type getUserFeedbackByIdUsingGETParams = {
     /** id */
-    id?: number;
+    id: number;
   };
 
   type getUserHistoryPageUsingGETParams = {
@@ -1259,31 +1423,6 @@ declare namespace API {
     current?: number;
     /** pageSize */
     pageSize?: number;
-  };
-
-  type getUserLearningRecordByIdUsingGETParams = {
-    /** id */
-    id?: number;
-  };
-
-  type getUserLearningStatsByAdminUsingGETParams = {
-    /** userId */
-    userId: number;
-  };
-
-  type getUserLevelByExperienceUsingGETParams = {
-    /** experience */
-    experience?: number;
-  };
-
-  type getUserLevelByIdUsingGETParams = {
-    /** id */
-    id?: number;
-  };
-
-  type getUserLevelVOByIdUsingGETParams = {
-    /** id */
-    id?: number;
   };
 
   type getUserSessionsUsingGETParams = {
@@ -1303,9 +1442,19 @@ declare namespace API {
     learningStatus?: number;
   };
 
+  type hasFavourUsingGETParams = {
+    /** postId */
+    postId: number;
+  };
+
   type hasReadAnnouncementUsingGETParams = {
     /** id */
     id: number;
+  };
+
+  type hasThumbUsingGETParams = {
+    /** postId */
+    postId: number;
   };
 
   type incrementDownloadCountUsingPOSTParams = {
@@ -1313,19 +1462,9 @@ declare namespace API {
     materialId?: number;
   };
 
-  type initUserLearningStatsByAdminUsingPOSTParams = {
-    /** userId */
-    userId: number;
-  };
-
   type isFavourArticleUsingGETParams = {
     /** articleId */
     articleId: number;
-  };
-
-  type isFavourWordUsingGETParams = {
-    /** wordId */
-    wordId: number;
   };
 
   type isThumbArticleUsingGETParams = {
@@ -1394,6 +1533,42 @@ declare namespace API {
     usageCount?: number;
   };
 
+  type listAnnouncementByPageUsingGETParams = {
+    adminId?: number;
+    content?: string;
+    coverImage?: string;
+    createTime?: string;
+    current?: number;
+    endTime?: string;
+    id?: number;
+    isValid?: boolean;
+    pageSize?: number;
+    priority?: number;
+    sortField?: string;
+    sortOrder?: string;
+    startTime?: string;
+    status?: number;
+    title?: string;
+  };
+
+  type listAnnouncementVOByPageUsingGETParams = {
+    adminId?: number;
+    content?: string;
+    coverImage?: string;
+    createTime?: string;
+    current?: number;
+    endTime?: string;
+    id?: number;
+    isValid?: boolean;
+    pageSize?: number;
+    priority?: number;
+    sortField?: string;
+    sortOrder?: string;
+    startTime?: string;
+    status?: number;
+    title?: string;
+  };
+
   type listChaptersByPageUsingGETParams = {
     /** courseId */
     courseId: number;
@@ -1448,6 +1623,106 @@ declare namespace API {
     userId?: number;
   };
 
+  type listDailyArticleByPageUsingGETParams = {
+    adminId?: number;
+    author?: string;
+    category?: string;
+    content?: string;
+    createTime?: string;
+    current?: number;
+    difficulty?: number;
+    id?: number;
+    maxReadTime?: number;
+    minReadTime?: number;
+    minViewCount?: number;
+    pageSize?: number;
+    publishDateEnd?: string;
+    publishDateStart?: string;
+    sortField?: string;
+    sortOrder?: string;
+    source?: string;
+    summary?: string;
+    tags?: string;
+    title?: string;
+  };
+
+  type listDailyArticleVOByPageUsingGETParams = {
+    adminId?: number;
+    author?: string;
+    category?: string;
+    content?: string;
+    createTime?: string;
+    current?: number;
+    difficulty?: number;
+    id?: number;
+    maxReadTime?: number;
+    minReadTime?: number;
+    minViewCount?: number;
+    pageSize?: number;
+    publishDateEnd?: string;
+    publishDateStart?: string;
+    sortField?: string;
+    sortOrder?: string;
+    source?: string;
+    summary?: string;
+    tags?: string;
+    title?: string;
+  };
+
+  type listDailyWordByPageUsingGETParams = {
+    adminId?: number;
+    category?: string;
+    createTime?: string;
+    current?: number;
+    difficulty?: number;
+    id?: number;
+    pageSize?: number;
+    publishDateEnd?: string;
+    publishDateStart?: string;
+    sortField?: string;
+    sortOrder?: string;
+    translation?: string;
+    word?: string;
+  };
+
+  type listDailyWordVOByPageUsingGETParams = {
+    adminId?: number;
+    category?: string;
+    createTime?: string;
+    current?: number;
+    difficulty?: number;
+    id?: number;
+    pageSize?: number;
+    publishDateEnd?: string;
+    publishDateStart?: string;
+    sortField?: string;
+    sortOrder?: string;
+    translation?: string;
+    word?: string;
+  };
+
+  type listFriendRelationshipByPageUsingGETParams = {
+    current?: number;
+    pageSize?: number;
+    sortField?: string;
+    sortOrder?: string;
+    status?: string;
+    userId?: number;
+    userId1?: number;
+    userId2?: number;
+  };
+
+  type listFriendRelationshipVOByPageUsingGETParams = {
+    current?: number;
+    pageSize?: number;
+    sortField?: string;
+    sortOrder?: string;
+    status?: string;
+    userId?: number;
+    userId1?: number;
+    userId2?: number;
+  };
+
   type listMaterialsByCourseUsingGETParams = {
     /** courseId */
     courseId?: number;
@@ -1482,6 +1757,61 @@ declare namespace API {
     userId?: number;
   };
 
+  type listMyFavourPostByPageUsingGETParams = {
+    content?: string;
+    current?: number;
+    favourUserId?: number;
+    id?: number;
+    notId?: number;
+    orTags?: string[];
+    pageSize?: number;
+    searchText?: string;
+    sortField?: string;
+    sortOrder?: string;
+    tags?: string[];
+    title?: string;
+    userId?: number;
+  };
+
+  type listMyPostVOByPageUsingGETParams = {
+    content?: string;
+    current?: number;
+    favourUserId?: number;
+    id?: number;
+    notId?: number;
+    orTags?: string[];
+    pageSize?: number;
+    searchText?: string;
+    sortField?: string;
+    sortOrder?: string;
+    tags?: string[];
+    title?: string;
+    userId?: number;
+  };
+
+  type listMyThumbArticleByPageUsingGETParams = {
+    adminId?: number;
+    author?: string;
+    category?: string;
+    content?: string;
+    createTime?: string;
+    current?: number;
+    difficulty?: number;
+    id?: number;
+    maxReadTime?: number;
+    minReadTime?: number;
+    minViewCount?: number;
+    pageSize?: number;
+    publishDateEnd?: string;
+    publishDateStart?: string;
+    sortField?: string;
+    sortOrder?: string;
+    source?: string;
+    summary?: string;
+    tags?: string;
+    title?: string;
+  };
+
   type listMyUserAiAvatarsByPageUsingGETParams = {
     aiAvatarId?: number;
     createTime?: string;
@@ -1495,9 +1825,73 @@ declare namespace API {
     userRating?: number;
   };
 
+  type listPostByPageUsingGETParams = {
+    content?: string;
+    current?: number;
+    favourUserId?: number;
+    id?: number;
+    notId?: number;
+    orTags?: string[];
+    pageSize?: number;
+    searchText?: string;
+    sortField?: string;
+    sortOrder?: string;
+    tags?: string[];
+    title?: string;
+    userId?: number;
+  };
+
+  type listPostCommentByPageUsingGETParams = {
+    content?: string;
+    current?: number;
+    pageSize?: number;
+    postId?: number;
+    sortField?: string;
+    sortOrder?: string;
+    userId?: number;
+  };
+
+  type listPostCommentReplyByPageUsingGETParams = {
+    commentId?: number;
+    content?: string;
+    current?: number;
+    pageSize?: number;
+    postId?: number;
+    sortField?: string;
+    sortOrder?: string;
+    userId?: number;
+  };
+
+  type listPostVOByPageUsingGETParams = {
+    content?: string;
+    current?: number;
+    favourUserId?: number;
+    id?: number;
+    notId?: number;
+    orTags?: string[];
+    pageSize?: number;
+    searchText?: string;
+    sortField?: string;
+    sortOrder?: string;
+    tags?: string[];
+    title?: string;
+    userId?: number;
+  };
+
   type listRepliesUsingGETParams = {
     /** feedbackId */
     feedbackId: number;
+  };
+
+  type listReplyByPageUsingGETParams = {
+    current?: number;
+    feedbackId?: number;
+    isRead?: number;
+    pageSize?: number;
+    senderId?: number;
+    senderRole?: number;
+    sortField?: string;
+    sortOrder?: string;
   };
 
   type listReviewsByPageUsingGETParams = {
@@ -1530,11 +1924,46 @@ declare namespace API {
     pageSize?: number;
   };
 
-  type listValidAnnouncementsUsingGETParams = {
+  type listSessionMessagesUsingGETParams = {
     /** current */
     current?: number;
+    /** sessionId */
+    sessionId: number;
     /** size */
     size?: number;
+  };
+
+  type listUserFeedbackByPageUsingGETParams = {
+    current?: number;
+    feedbackType?: string;
+    pageSize?: number;
+    sortField?: string;
+    sortOrder?: string;
+    status?: number;
+    title?: string;
+    userId?: number;
+  };
+
+  type listUserSessionsUsingGETParams = {
+    /** userId */
+    userId?: number;
+  };
+
+  type listUserWordBookByPageUsingGETParams = {
+    createTime?: string;
+    createTimeEnd?: string;
+    createTimeStart?: string;
+    current?: number;
+    difficulty?: number;
+    id?: number;
+    isCollected?: number;
+    learningStatus?: number;
+    pageSize?: number;
+    sortField?: string;
+    sortOrder?: string;
+    userId?: number;
+    word?: string;
+    wordId?: number;
   };
 
   type LoginUserVO = {
@@ -1549,18 +1978,28 @@ declare namespace API {
 
   type MapStringObject_ = true;
 
-  type MapStringObject_1 = true;
+  type MapStringString_ = true;
 
-  type MapStringObject_2 = true;
-
-  type markAsReadUsingPOSTParams = {
+  type markAsReadUsingPUTParams = {
     /** replyId */
     replyId: number;
   };
 
-  type markWordAsStudiedUsingPOST1Params = {
-    /** wordId */
-    wordId: number;
+  type markMessageAsReadUsingPOSTParams = {
+    /** messageId */
+    messageId: number;
+    /** sessionId */
+    sessionId?: string;
+  };
+
+  type markMessagesAsReadUsingPOSTParams = {
+    /** sessionId */
+    sessionId?: string;
+  };
+
+  type markSessionMessagesAsReadUsingPOSTParams = {
+    /** sessionId */
+    sessionId: number;
   };
 
   type markWordAsStudiedUsingPOSTParams = {
@@ -1742,6 +2181,58 @@ declare namespace API {
     total?: number;
   };
 
+  type PageFriendRelationship_ = {
+    countId?: string;
+    current?: number;
+    maxLimit?: number;
+    optimizeCountSql?: boolean;
+    orders?: OrderItem[];
+    pages?: number;
+    records?: FriendRelationship[];
+    searchCount?: boolean;
+    size?: number;
+    total?: number;
+  };
+
+  type PageFriendRelationshipVO_ = {
+    countId?: string;
+    current?: number;
+    maxLimit?: number;
+    optimizeCountSql?: boolean;
+    orders?: OrderItem[];
+    pages?: number;
+    records?: FriendRelationshipVO[];
+    searchCount?: boolean;
+    size?: number;
+    total?: number;
+  };
+
+  type PageFriendRequest_ = {
+    countId?: string;
+    current?: number;
+    maxLimit?: number;
+    optimizeCountSql?: boolean;
+    orders?: OrderItem[];
+    pages?: number;
+    records?: FriendRequest[];
+    searchCount?: boolean;
+    size?: number;
+    total?: number;
+  };
+
+  type PageFriendRequestVO_ = {
+    countId?: string;
+    current?: number;
+    maxLimit?: number;
+    optimizeCountSql?: boolean;
+    orders?: OrderItem[];
+    pages?: number;
+    records?: FriendRequestVO[];
+    searchCount?: boolean;
+    size?: number;
+    total?: number;
+  };
+
   type PagePost_ = {
     countId?: string;
     current?: number;
@@ -1755,6 +2246,32 @@ declare namespace API {
     total?: number;
   };
 
+  type PagePostCommentReplyVO_ = {
+    countId?: string;
+    current?: number;
+    maxLimit?: number;
+    optimizeCountSql?: boolean;
+    orders?: OrderItem[];
+    pages?: number;
+    records?: PostCommentReplyVO[];
+    searchCount?: boolean;
+    size?: number;
+    total?: number;
+  };
+
+  type PagePostCommentVO_ = {
+    countId?: string;
+    current?: number;
+    maxLimit?: number;
+    optimizeCountSql?: boolean;
+    orders?: OrderItem[];
+    pages?: number;
+    records?: PostCommentVO[];
+    searchCount?: boolean;
+    size?: number;
+    total?: number;
+  };
+
   type PagePostVO_ = {
     countId?: string;
     current?: number;
@@ -1763,6 +2280,19 @@ declare namespace API {
     orders?: OrderItem[];
     pages?: number;
     records?: PostVO[];
+    searchCount?: boolean;
+    size?: number;
+    total?: number;
+  };
+
+  type PagePrivateMessageVO_ = {
+    countId?: string;
+    current?: number;
+    maxLimit?: number;
+    optimizeCountSql?: boolean;
+    orders?: OrderItem[];
+    pages?: number;
+    records?: PrivateMessageVO[];
     searchCount?: boolean;
     size?: number;
     total?: number;
@@ -1846,45 +2376,6 @@ declare namespace API {
     total?: number;
   };
 
-  type PageUserLearningRecordVO_ = {
-    countId?: string;
-    current?: number;
-    maxLimit?: number;
-    optimizeCountSql?: boolean;
-    orders?: OrderItem[];
-    pages?: number;
-    records?: UserLearningRecordVO[];
-    searchCount?: boolean;
-    size?: number;
-    total?: number;
-  };
-
-  type PageUserLevel_ = {
-    countId?: string;
-    current?: number;
-    maxLimit?: number;
-    optimizeCountSql?: boolean;
-    orders?: OrderItem[];
-    pages?: number;
-    records?: UserLevel[];
-    searchCount?: boolean;
-    size?: number;
-    total?: number;
-  };
-
-  type PageUserLevelVO_ = {
-    countId?: string;
-    current?: number;
-    maxLimit?: number;
-    optimizeCountSql?: boolean;
-    orders?: OrderItem[];
-    pages?: number;
-    records?: UserLevelVO[];
-    searchCount?: boolean;
-    size?: number;
-    total?: number;
-  };
-
   type PageUserVO_ = {
     countId?: string;
     current?: number;
@@ -1913,6 +2404,7 @@ declare namespace API {
 
   type Post = {
     city?: string;
+    commentNum?: number;
     content?: string;
     country?: string;
     createTime?: string;
@@ -1932,6 +2424,43 @@ declare namespace API {
     content?: string;
     tags?: string[];
     title?: string;
+    type?: string;
+  };
+
+  type PostCommentAddRequest = {
+    clientIp?: string;
+    content?: string;
+    postId?: number;
+  };
+
+  type PostCommentReplyAddRequest = {
+    clientIp?: string;
+    commentId?: number;
+    content?: string;
+    postId?: number;
+  };
+
+  type PostCommentReplyVO = {
+    city?: string;
+    commentId?: number;
+    content?: string;
+    country?: string;
+    createTime?: string;
+    id?: number;
+    postId?: number;
+    userId?: number;
+    userVO?: UserVO;
+  };
+
+  type PostCommentVO = {
+    city?: string;
+    content?: string;
+    country?: string;
+    createTime?: string;
+    id?: number;
+    postId?: number;
+    userId?: number;
+    userVO?: UserVO;
   };
 
   type PostEditRequest = {
@@ -1944,31 +2473,6 @@ declare namespace API {
 
   type PostFavourAddRequest = {
     postId?: number;
-  };
-
-  type PostFavourQueryRequest = {
-    current?: number;
-    pageSize?: number;
-    postQueryRequest?: PostQueryRequest;
-    sortField?: string;
-    sortOrder?: string;
-    userId?: number;
-  };
-
-  type PostQueryRequest = {
-    content?: string;
-    current?: number;
-    favourUserId?: number;
-    id?: number;
-    notId?: number;
-    orTags?: string[];
-    pageSize?: number;
-    searchText?: string;
-    sortField?: string;
-    sortOrder?: string;
-    tags?: string[];
-    title?: string;
-    userId?: number;
   };
 
   type PostThumbAddRequest = {
@@ -1984,6 +2488,7 @@ declare namespace API {
 
   type PostVO = {
     city?: string;
+    commentNum?: number;
     content?: string;
     country?: string;
     createTime?: string;
@@ -1997,6 +2502,51 @@ declare namespace API {
     updateTime?: string;
     user?: UserVO;
     userId?: number;
+  };
+
+  type PrivateChatSessionAddRequest = {
+    userId1?: number;
+    userId2?: number;
+  };
+
+  type PrivateChatSessionVO = {
+    createTime?: string;
+    id?: number;
+    lastMessage?: PrivateMessageVO;
+    lastMessageTime?: string;
+    targetUser?: UserVO;
+    unreadCount?: number;
+    updateTime?: string;
+    user1?: UserVO;
+    user2?: UserVO;
+    userId1?: number;
+    userId2?: number;
+  };
+
+  type PrivateMessageAddRequest = {
+    content?: string;
+    receiverId?: number;
+  };
+
+  type PrivateMessageVO = {
+    content?: string;
+    createTime?: string;
+    id?: number;
+    isRead?: number;
+    receiverId?: number;
+    receiverUser?: UserVO;
+    senderId?: number;
+    senderUser?: UserVO;
+  };
+
+  type processAndReplyUsingPOSTParams = {
+    /** id */
+    id: number;
+  };
+
+  type processUserFeedbackUsingPUTParams = {
+    /** id */
+    id: number;
   };
 
   type rateAiAvatarUsingPOSTParams = {
@@ -2020,45 +2570,12 @@ declare namespace API {
     id: number;
   };
 
-  type recordCourseStudyUsingPOSTParams = {
-    /** courseId */
-    courseId: number;
-    /** duration */
-    duration: number;
-    /** progress */
-    progress?: number;
-    /** sectionId */
-    sectionId?: number;
+  type rejectFriendRequestUsingPOSTParams = {
+    /** id */
+    id: number;
   };
 
-  type recordListeningPracticeUsingPOSTParams = {
-    /** accuracy */
-    accuracy?: number;
-    /** duration */
-    duration: number;
-    /** listeningId */
-    listeningId: number;
-  };
-
-  type recordReadingPracticeUsingPOSTParams = {
-    /** accuracy */
-    accuracy?: number;
-    /** articleId */
-    articleId: number;
-    /** duration */
-    duration: number;
-  };
-
-  type recordWordStudyUsingPOSTParams = {
-    /** accuracy */
-    accuracy?: number;
-    /** count */
-    count?: number;
-    /** wordId */
-    wordId: number;
-  };
-
-  type removeFromWordBookUsingPOSTParams = {
+  type removeFromWordBookUsingDELETEParams = {
     /** wordId */
     wordId: number;
   };
@@ -2070,18 +2587,35 @@ declare namespace API {
     reviewId: number;
   };
 
-  type saveWordNoteUsingPOST1Params = {
+  type saveWordNoteUsingPOSTParams = {
     /** noteContent */
     noteContent: string;
     /** wordId */
     wordId: number;
   };
 
-  type saveWordNoteUsingPOSTParams = {
-    /** noteContent */
-    noteContent: string;
-    /** wordId */
-    wordId: number;
+  type searchDailyArticleUsingGETParams = {
+    /** searchText */
+    searchText: string;
+  };
+
+  type searchDailyWordUsingGETParams = {
+    /** searchText */
+    searchText: string;
+  };
+
+  type searchPostVOByPageUsingGETParams = {
+    /** searchText */
+    searchText?: string;
+  };
+
+  type sendSystemNotificationUsingPOSTParams = {
+    /** content */
+    content: string;
+    /** data */
+    data?: Record<string, any>;
+    /** userId */
+    userId?: number;
   };
 
   type SseEmitter = {
@@ -2153,14 +2687,47 @@ declare namespace API {
     userVO?: UserVO;
   };
 
+  type thumbArticleUsingPOSTParams = {
+    /** articleId */
+    articleId: number;
+  };
+
+  type thumbWordUsingPOSTParams = {
+    /** wordId */
+    wordId: number;
+  };
+
   type unfavourCourseUsingPOSTParams = {
     /** courseId */
     courseId: number;
   };
 
-  type updateMasteryLevelUsingPOST1Params = {
-    /** masteryLevel */
-    masteryLevel: number;
+  type updateAiAvatarUsingPUTParams = {
+    /** id */
+    id: number;
+  };
+
+  type updateAnnouncementUsingPUTParams = {
+    /** id */
+    id: number;
+  };
+
+  type updateDailyArticleUsingPUTParams = {
+    /** id */
+    id: number;
+  };
+
+  type updateDailyWordUsingPUTParams = {
+    /** id */
+    id: number;
+  };
+
+  type updateDifficultyUsingPUTParams = {
+    /** wordId */
+    wordId: number;
+  };
+
+  type updateLearningStatusUsingPUTParams = {
     /** wordId */
     wordId: number;
   };
@@ -2177,6 +2744,11 @@ declare namespace API {
     materialId: number;
   };
 
+  type updatePostUsingPUTParams = {
+    /** id */
+    id: number;
+  };
+
   type updateReviewStatusUsingPOSTParams = {
     /** reviewId */
     reviewId: number;
@@ -2189,13 +2761,9 @@ declare namespace API {
     sectionId: number;
   };
 
-  type updateUserLevelByAdminUsingPOSTParams = {
-    /** newLevel */
-    newLevel: number;
-    /** nextLevelExp */
-    nextLevelExp?: number;
-    /** userId */
-    userId: number;
+  type updateUserFeedbackUsingPUTParams = {
+    /** id */
+    id: number;
   };
 
   type uploadAndAddMaterialUsingPOSTParams = {
@@ -2205,11 +2773,6 @@ declare namespace API {
     description?: string;
     /** title */
     title: string;
-  };
-
-  type uploadFileUsingPOSTParams = {
-    description?: string;
-    filename?: string;
   };
 
   type uploadVideoAndAddSectionUsingPOSTParams = {
@@ -2292,10 +2855,8 @@ declare namespace API {
   };
 
   type UserDailyWord = {
-    collectTime?: string;
     createTime?: string;
     id?: number;
-    isCollected?: number;
     isLiked?: number;
     isStudied?: number;
     likeTime?: string;
@@ -2335,32 +2896,10 @@ declare namespace API {
     status?: number;
   };
 
-  type UserFeedbackQueryRequest = {
-    current?: number;
-    feedbackType?: string;
-    pageSize?: number;
-    sortField?: string;
-    sortOrder?: string;
-    status?: number;
-    title?: string;
-    userId?: number;
-  };
-
   type UserFeedbackReplyAddRequest = {
     attachment?: string;
     content?: string;
     feedbackId?: number;
-  };
-
-  type UserFeedbackReplyQueryRequest = {
-    current?: number;
-    feedbackId?: number;
-    isRead?: number;
-    pageSize?: number;
-    senderId?: number;
-    senderRole?: number;
-    sortField?: string;
-    sortOrder?: string;
   };
 
   type UserFeedbackReplyVO = {
@@ -2383,162 +2922,6 @@ declare namespace API {
     title?: string;
   };
 
-  type UserLearningRecordAddRequest = {
-    accuracy?: number;
-    count?: number;
-    duration?: number;
-    experience?: number;
-    lessonNumber?: number;
-    points?: number;
-    recordDate?: string;
-    recordType?: string;
-    relatedId?: number;
-    remark?: string;
-    status?: string;
-  };
-
-  type UserLearningRecordQueryRequest = {
-    current?: number;
-    endDate?: string;
-    id?: number;
-    keyword?: string;
-    lessonNumber?: number;
-    maxAccuracy?: number;
-    maxCount?: number;
-    maxDuration?: number;
-    maxExperience?: number;
-    maxPoints?: number;
-    minAccuracy?: number;
-    minCount?: number;
-    minDuration?: number;
-    minExperience?: number;
-    minPoints?: number;
-    pageSize?: number;
-    recordType?: string;
-    relatedId?: number;
-    sortField?: string;
-    sortOrder?: string;
-    startDate?: string;
-    status?: string;
-    userId?: number;
-  };
-
-  type UserLearningRecordUpdateRequest = {
-    accuracy?: number;
-    count?: number;
-    duration?: number;
-    experience?: number;
-    id?: number;
-    lessonNumber?: number;
-    points?: number;
-    recordDate?: string;
-    recordType?: string;
-    relatedId?: number;
-    remark?: string;
-    status?: string;
-  };
-
-  type UserLearningRecordVO = {
-    accuracy?: number;
-    count?: number;
-    createTime?: string;
-    duration?: number;
-    experience?: number;
-    formattedDuration?: string;
-    id?: number;
-    lessonNumber?: number;
-    points?: number;
-    recordDate?: string;
-    recordType?: string;
-    recordTypeName?: string;
-    relatedId?: number;
-    relatedName?: string;
-    remark?: string;
-    status?: string;
-    statusName?: string;
-    userAvatar?: string;
-    userId?: number;
-    userName?: string;
-  };
-
-  type UserLearningStats = {
-    continuousCheckIn?: number;
-    createTime?: string;
-    experience?: number;
-    id?: number;
-    lastCheckInTime?: string;
-    learningDays?: number;
-    level?: number;
-    nextLevelExp?: number;
-    totalBadges?: number;
-    totalCheckIn?: number;
-    totalPoints?: number;
-    updateTime?: string;
-    userId?: number;
-  };
-
-  type UserLevel = {
-    createTime?: string;
-    description?: string;
-    iconUrl?: string;
-    id?: number;
-    isDelete?: number;
-    level?: number;
-    levelName?: string;
-    maxExperience?: number;
-    minExperience?: number;
-    privileges?: string;
-    updateTime?: string;
-  };
-
-  type UserLevelAddRequest = {
-    description?: string;
-    iconUrl?: string;
-    level?: number;
-    levelName?: string;
-    maxExperience?: number;
-    minExperience?: number;
-    privileges?: string;
-  };
-
-  type UserLevelQueryRequest = {
-    current?: number;
-    id?: number;
-    level?: number;
-    levelName?: string;
-    maxExperienceEnd?: number;
-    maxExperienceStart?: number;
-    minExperienceEnd?: number;
-    minExperienceStart?: number;
-    pageSize?: number;
-    sortField?: string;
-    sortOrder?: string;
-  };
-
-  type UserLevelUpdateRequest = {
-    description?: string;
-    iconUrl?: string;
-    id?: number;
-    level?: number;
-    levelName?: string;
-    maxExperience?: number;
-    minExperience?: number;
-    privileges?: string;
-  };
-
-  type UserLevelVO = {
-    createTime?: string;
-    description?: string;
-    iconUrl?: string;
-    id?: number;
-    level?: number;
-    levelName?: string;
-    maxExperience?: number;
-    minExperience?: number;
-    privileges?: string;
-    updateTime?: string;
-  };
-
   type UserLoginByPhoneRequest = {
     userPassword?: string;
     userPhone?: string;
@@ -2555,21 +2938,17 @@ declare namespace API {
   };
 
   type UserQueryRequest = {
-    birthday?: string;
-    createTime?: string;
+    birthdayYear?: number;
     current?: number;
     id?: number;
-    mpOpenId?: string;
     pageSize?: number;
     sortField?: string;
     sortOrder?: string;
-    unionId?: string;
     userAccount?: string;
     userEmail?: string;
     userGender?: number;
     userName?: string;
     userPhone?: string;
-    userProfile?: string;
     userRole?: string;
     wechatId?: string;
   };
@@ -2621,39 +3000,19 @@ declare namespace API {
   };
 
   type UserVO = {
+    birthdayYear?: number;
+    city?: string;
     createTime?: string;
     id?: number;
+    province?: string;
     userAvatar?: string;
     userName?: string;
-    userPhone?: string;
     userProfile?: string;
     userRole?: string;
   };
 
   type UserWordBookAddRequest = {
     difficulty?: number;
-    wordId?: number;
-  };
-
-  type UserWordBookCollectionRequest = {
-    isCollected?: number;
-    wordId?: number;
-  };
-
-  type UserWordBookQueryRequest = {
-    createTime?: string;
-    createTimeEnd?: string;
-    createTimeStart?: string;
-    current?: number;
-    difficulty?: number;
-    id?: number;
-    isCollected?: number;
-    learningStatus?: number;
-    pageSize?: number;
-    sortField?: string;
-    sortOrder?: string;
-    userId?: number;
-    word?: string;
     wordId?: number;
   };
 

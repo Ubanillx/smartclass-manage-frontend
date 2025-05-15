@@ -5,6 +5,7 @@
 import * as aiAvatarChatController from './aiAvatarChatController';
 import * as aiAvatarController from './aiAvatarController';
 import * as announcementController from './announcementController';
+import * as chatController from './chatController';
 import * as courseCategoryController from './courseCategoryController';
 import * as courseChapterController from './courseChapterController';
 import * as courseController from './courseController';
@@ -16,10 +17,14 @@ import * as dailyArticleController from './dailyArticleController';
 import * as dailyArticleFavourController from './dailyArticleFavourController';
 import * as dailyArticleThumbController from './dailyArticleThumbController';
 import * as dailyWordController from './dailyWordController';
-import * as dailyWordFavourController from './dailyWordFavourController';
 import * as dailyWordLearningController from './dailyWordLearningController';
 import * as dailyWordThumbController from './dailyWordThumbController';
 import * as fileController from './fileController';
+import * as friendRelationshipController from './friendRelationshipController';
+import * as friendRequestController from './friendRequestController';
+import * as jiekouwendang from './jiekouwendang';
+import * as postCommentController from './postCommentController';
+import * as postCommentReplyController from './postCommentReplyController';
 import * as postController from './postController';
 import * as postFavourController from './postFavourController';
 import * as postThumbController from './postThumbController';
@@ -28,9 +33,6 @@ import * as userAiAvatarController from './userAiAvatarController';
 import * as userController from './userController';
 import * as userFeedbackController from './userFeedbackController';
 import * as userFeedbackReplyController from './userFeedbackReplyController';
-import * as userLearningRecordController from './userLearningRecordController';
-import * as userLearningStatsController from './userLearningStatsController';
-import * as userLevelController from './userLevelController';
 import * as userWordBookController from './userWordBookController';
 import * as wxMpController from './wxMpController';
 export default {
@@ -45,24 +47,26 @@ export default {
   courseMaterialController,
   courseReviewController,
   courseSectionController,
-  dailyArticleThumbController,
-  dailyWordLearningController,
-  dailyWordThumbController,
   dailyArticleController,
   dailyArticleFavourController,
+  dailyArticleThumbController,
+  dailyWordThumbController,
   dailyWordController,
-  dailyWordFavourController,
+  dailyWordLearningController,
   fileController,
-  postController,
+  friendRequestController,
+  friendRelationshipController,
+  postCommentReplyController,
+  postCommentController,
   postFavourController,
   postThumbController,
+  jiekouwendang,
+  postController,
+  chatController,
   teacherController,
-  userController,
-  userFeedbackController,
   userFeedbackReplyController,
-  userLearningRecordController,
-  userLevelController,
-  userLearningStatsController,
+  userFeedbackController,
+  userController,
   userAiAvatarController,
   userWordBookController,
 };

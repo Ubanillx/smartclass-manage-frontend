@@ -2,12 +2,12 @@
 /* eslint-disable */
 import { request } from '@umijs/max';
 
-/** addDailyWord POST /api/dailyWord/add */
+/** addDailyWord POST /api/daily-words */
 export async function addDailyWordUsingPost(
   body: API.DailyWordAddRequest,
   options?: { [key: string]: any },
 ) {
-  return request<API.BaseResponseLong_>('/api/dailyWord/add', {
+  return request<API.BaseResponseLong_>('/api/daily-words', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -17,123 +17,109 @@ export async function addDailyWordUsingPost(
   });
 }
 
-/** deleteDailyWord POST /api/dailyWord/delete */
-export async function deleteDailyWordUsingPost(
-  body: API.DeleteRequest1,
-  options?: { [key: string]: any },
-) {
-  return request<API.BaseResponseBoolean_>('/api/dailyWord/delete', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    data: body,
-    ...(options || {}),
-  });
-}
-
-/** testEsIndex GET /api/dailyWord/es/test */
-export async function testEsIndexUsingGet1(options?: { [key: string]: any }) {
-  return request<API.BaseResponseBoolean_>('/api/dailyWord/es/test', {
-    method: 'GET',
-    ...(options || {}),
-  });
-}
-
-/** getDailyWordVOById GET /api/dailyWord/get/vo */
+/** getDailyWordVOById GET /api/daily-words/${param0} */
 export async function getDailyWordVoByIdUsingGet(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
   params: API.getDailyWordVOByIdUsingGETParams,
   options?: { [key: string]: any },
 ) {
-  return request<API.BaseResponseDailyWordVO_>('/api/dailyWord/get/vo', {
+  const { id: param0, ...queryParams } = params;
+  return request<API.BaseResponseDailyWordVO_>(`/api/daily-words/${param0}`, {
     method: 'GET',
-    params: {
-      ...params,
-    },
+    params: { ...queryParams },
     ...(options || {}),
   });
 }
 
-/** listDailyWordByPage POST /api/dailyWord/list/page */
-export async function listDailyWordByPageUsingPost(
-  body: API.DailyWordQueryRequest,
-  options?: { [key: string]: any },
-) {
-  return request<API.BaseResponsePageDailyWord_>('/api/dailyWord/list/page', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    data: body,
-    ...(options || {}),
-  });
-}
-
-/** listDailyWordVOByPage POST /api/dailyWord/list/page/vo */
-export async function listDailyWordVoByPageUsingPost(
-  body: API.DailyWordQueryRequest,
-  options?: { [key: string]: any },
-) {
-  return request<API.BaseResponsePageDailyWordVO_>('/api/dailyWord/list/page/vo', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    data: body,
-    ...(options || {}),
-  });
-}
-
-/** getRandomWord GET /api/dailyWord/random */
-export async function getRandomWordUsingGet(
+/** deleteDailyWord DELETE /api/daily-words/${param0} */
+export async function deleteDailyWordUsingDelete(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
-  params: API.getRandomWordUsingGETParams,
+  params: API.deleteDailyWordUsingDELETEParams,
   options?: { [key: string]: any },
 ) {
-  return request<API.BaseResponseDailyWordVO_>('/api/dailyWord/random', {
-    method: 'GET',
-    params: {
-      ...params,
-    },
+  const { id: param0, ...queryParams } = params;
+  return request<API.BaseResponseBoolean_>(`/api/daily-words/${param0}`, {
+    method: 'DELETE',
+    params: { ...queryParams },
     ...(options || {}),
   });
 }
 
-/** searchDailyWord POST /api/dailyWord/search/es */
-export async function searchDailyWordUsingPost(
-  body: API.DailyWordQueryRequest,
-  options?: { [key: string]: any },
-) {
-  return request<API.BaseResponsePageDailyWordVO_>('/api/dailyWord/search/es', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    data: body,
-    ...(options || {}),
-  });
-}
-
-/** getTodayWord GET /api/dailyWord/today */
-export async function getTodayWordUsingGet(options?: { [key: string]: any }) {
-  return request<API.BaseResponseDailyWordVO_>('/api/dailyWord/today', {
-    method: 'GET',
-    ...(options || {}),
-  });
-}
-
-/** updateDailyWord POST /api/dailyWord/update */
-export async function updateDailyWordUsingPost(
+/** updateDailyWord PUT /api/daily-words/${param0}/admin */
+export async function updateDailyWordUsingPut(
+  // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
+  params: API.updateDailyWordUsingPUTParams,
   body: API.DailyWordUpdateRequest,
   options?: { [key: string]: any },
 ) {
-  return request<API.BaseResponseBoolean_>('/api/dailyWord/update', {
-    method: 'POST',
+  const { id: param0, ...queryParams } = params;
+  return request<API.BaseResponseBoolean_>(`/api/daily-words/${param0}/admin`, {
+    method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
     },
+    params: { ...queryParams },
     data: body,
+    ...(options || {}),
+  });
+}
+
+/** listDailyWordByPage GET /api/daily-words/admin/page */
+export async function listDailyWordByPageUsingGet(
+  // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
+  params: API.listDailyWordByPageUsingGETParams,
+  options?: { [key: string]: any },
+) {
+  return request<API.BaseResponsePageDailyWord_>('/api/daily-words/admin/page', {
+    method: 'GET',
+    params: {
+      ...params,
+    },
+    ...(options || {}),
+  });
+}
+
+/** listDailyWordVOByPage GET /api/daily-words/page */
+export async function listDailyWordVoByPageUsingGet(
+  // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
+  params: API.listDailyWordVOByPageUsingGETParams,
+  options?: { [key: string]: any },
+) {
+  return request<API.BaseResponsePageDailyWordVO_>('/api/daily-words/page', {
+    method: 'GET',
+    params: {
+      ...params,
+    },
+    ...(options || {}),
+  });
+}
+
+/** searchDailyWord GET /api/daily-words/search */
+export async function searchDailyWordUsingGet(
+  // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
+  params: API.searchDailyWordUsingGETParams,
+  options?: { [key: string]: any },
+) {
+  return request<API.BaseResponsePageDailyWordVO_>('/api/daily-words/search', {
+    method: 'GET',
+    params: {
+      ...params,
+    },
+    ...(options || {}),
+  });
+}
+
+/** getTodayWord GET /api/daily-words/today */
+export async function getTodayWordUsingGet(
+  // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
+  params: API.getTodayWordUsingGETParams,
+  options?: { [key: string]: any },
+) {
+  return request<API.BaseResponseDailyWordVO_>('/api/daily-words/today', {
+    method: 'GET',
+    params: {
+      ...params,
+    },
     ...(options || {}),
   });
 }

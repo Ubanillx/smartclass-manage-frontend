@@ -16,7 +16,7 @@ export async function addUserUsingPost(body: API.UserAddRequest, options?: { [ke
 
 /** deleteUser POST /api/user/delete */
 export async function deleteUserUsingPost(
-  body: API.DeleteRequest1,
+  body: API.DeleteRequest,
   options?: { [key: string]: any },
 ) {
   return request<API.BaseResponseBoolean_>('/api/user/delete', {
