@@ -26,6 +26,8 @@ import * as postThumbController from './postThumbController';
 import * as teacherController from './teacherController';
 import * as userAiAvatarController from './userAiAvatarController';
 import * as userController from './userController';
+import * as userFeedbackController from './userFeedbackController';
+import * as userFeedbackReplyController from './userFeedbackReplyController';
 import * as userLearningRecordController from './userLearningRecordController';
 import * as userLearningStatsController from './userLearningStatsController';
 import * as userLevelController from './userLevelController';
@@ -56,6 +58,8 @@ export default {
   postThumbController,
   teacherController,
   userController,
+  userFeedbackController,
+  userFeedbackReplyController,
   userLearningRecordController,
   userLevelController,
   userLearningStatsController,

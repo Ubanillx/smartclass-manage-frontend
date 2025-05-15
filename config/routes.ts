@@ -17,6 +17,7 @@ export default [
   { path: '/admin/aiAvatarManagement', icon: 'robotOutlined', component: './Admin/AiAvatar', name: 'AI分身管理' ,access: 'canAdmin' },
   { path: '/admin/dailyWordManagement', icon: 'bookOutlined', component: './Admin/DailyWord', name: '每日单词管理' ,access: 'canAdmin' },
   { path: '/admin/dailyArticleManagement', icon: 'fileTextOutlined', component: './Admin/DailyArticle', name: '每日美文管理' ,access: 'canAdmin' },
+  { path: '/admin/feedbackManagement', icon: 'commentOutlined', component: './Admin/Feedback', name: '用户反馈管理' ,access: 'canAdmin' },
 
   { path: '/', redirect: '/welcome' },
   { path: '*', layout: false, component: './404' },
