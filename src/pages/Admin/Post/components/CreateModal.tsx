@@ -8,11 +8,11 @@ import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import rehypeRaw from 'rehype-raw';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { coldarkCold } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import 'katex/dist/katex.min.css';
 import { FullscreenOutlined, FullscreenExitOutlined } from '@ant-design/icons';
 import './style.less';
+import { getUserIP } from '@/utils/ipUtils';
 
 interface Props {
   visible: boolean;
@@ -89,11 +89,15 @@ const CreateModal: React.FC<Props> = (props) => {
       const values = await form.validateFields();
       setSubmitting(true);
       
+      // 获取用户IP地址
+      const ip = await getUserIP();
+      
       // 处理表单数据
-      const postData: API.PostAddRequest = {
+      const postData = {
         title: values.title,
         content: values.content,
-        tags: values.tags ? values.tags.split(',').map((tag: string) => tag.trim()).filter(Boolean) : []
+        tags: values.tags ? values.tags.split(',').map((tag: string) => tag.trim()).filter(Boolean) : [],
+        clientIp: ip // 使用正确的字段名clientIp
       };
       
       const success = await handleAdd(postData);
@@ -136,14 +140,11 @@ const CreateModal: React.FC<Props> = (props) => {
   const CodeBlock = ({ node, inline, className, children, ...props }: any) => {
     const match = /language-(\w+)/.exec(className || '');
     return !inline && match ? (
-      <SyntaxHighlighter
-        style={coldarkCold as any}
-        language={match[1]}
-        PreTag="div"
-        {...props}
-      >
-        {String(children).replace(/\n$/, '')}
-      </SyntaxHighlighter>
+      <pre style={{ backgroundColor: '#f5f5f5', padding: '16px', borderRadius: '4px', overflow: 'auto' }}>
+        <code className={className} {...props}>
+          {String(children).replace(/\n$/, '')}
+        </code>
+      </pre>
     ) : (
       <code className={className} {...props}>
         {children}
