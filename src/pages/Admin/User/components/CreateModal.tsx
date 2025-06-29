@@ -1,11 +1,13 @@
 import { addUserUsingPost } from '@/services/backend/userController';
 import { ProColumns, ProForm, ProFormDigit, ProFormInstance, ProFormSelect, ProFormText, ProFormTextArea, ProFormDatePicker } from '@ant-design/pro-components';
 import '@umijs/max';
-import { Alert, Cascader, Divider, Form, message, Modal, Typography } from 'antd';
-import React, { useRef } from 'react';
+import { Alert, Cascader, Divider, Form, message, Modal, Typography, Upload, Button, Image, Row, Col, Input } from 'antd';
+import { PlusOutlined, LoadingOutlined } from '@ant-design/icons';
+import React, { useRef, useState } from 'react';
 import styles from './modal.less';
 import regionData from '@/constants/regionData';
 import moment from 'moment';
+import type { RcFile, UploadFile, UploadProps } from 'antd/es/upload/interface';
 
 interface Props {
   visible: boolean;
@@ -40,6 +42,8 @@ const handleAdd = async (fields: API.UserAddRequest) => {
 const CreateModal: React.FC<Props> = (props) => {
   const { visible, columns, onSubmit, onCancel } = props;
   const formRef = useRef<ProFormInstance>();
+  const [fileList, setFileList] = useState<UploadFile[]>([]);
+  const [uploading, setUploading] = useState<boolean>(false);
 
   // 处理级联选择器的变化
   const handleCascaderChange = (value: string[]) => {
@@ -51,6 +55,54 @@ const CreateModal: React.FC<Props> = (props) => {
       });
     }
   };
+
+  // 处理上传图片的变化
+  const handleUploadChange: UploadProps['onChange'] = (info) => {
+    if (info.file.status === 'uploading') {
+      setUploading(true);
+      return;
+    }
+    
+    if (info.file.status === 'done') {
+      // 获取上传成功后的URL
+      const imageUrl = info.file.response?.data;
+      if (imageUrl) {
+        formRef.current?.setFieldsValue({ userAvatar: imageUrl });
+        message.success('上传成功');
+      }
+      setUploading(false);
+    } else if (info.file.status === 'error') {
+      message.error('上传失败');
+      setUploading(false);
+    }
+    
+    setFileList(info.fileList.slice(-1)); // 只保留最后一个文件
+  };
+
+  // 上传前检查
+  const beforeUpload = (file: RcFile) => {
+    const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
+    if (!isJpgOrPng) {
+      message.error('只能上传JPG/PNG格式的图片!');
+      return false;
+    }
+    
+    const isLt2M = file.size / 1024 / 1024 < 2;
+    if (!isLt2M) {
+      message.error('图片大小不能超过2MB!');
+      return false;
+    }
+    
+    return true;
+  };
+
+  // 上传按钮
+  const uploadButton = (
+    <div>
+      {uploading ? <LoadingOutlined /> : <PlusOutlined />}
+      <div style={{ marginTop: 8 }}>上传</div>
+    </div>
+  );
 
   return (
     <Modal
@@ -107,6 +159,82 @@ const CreateModal: React.FC<Props> = (props) => {
           <Typography.Title level={5} style={{ textAlign: 'left' }}>基本信息</Typography.Title>
           <Divider style={{ margin: '8px 0 16px' }} />
         </div>
+        
+        <Form.Item
+          label="头像"
+          name="userAvatar"
+          help="请上传用户头像或输入头像URL"
+          tooltip="支持jpg/png格式，大小不超过2MB"
+          style={{ gridColumn: 'span 2' }}
+        >
+          <Row gutter={16} align="middle">
+            <Col span={6} style={{ textAlign: 'center' }}>
+              {fileList.length > 0 && (fileList[0].url || fileList[0].thumbUrl) ? (
+                <Image 
+                  src={fileList[0].url || fileList[0].thumbUrl} 
+                  alt="头像预览" 
+                  style={{ width: '100px', height: '100px', borderRadius: '8px', objectFit: 'cover' }}
+                />
+              ) : (
+                <div style={{ width: '100px', height: '100px', backgroundColor: '#f5f5f5', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <span>暂无头像</span>
+                </div>
+              )}
+            </Col>
+            <Col span={18}>
+              <Input 
+                placeholder="请输入头像URL" 
+                style={{ marginBottom: '8px', width: '100%' }}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                  const url = e.target.value;
+                  if (url && url.trim() !== '') {
+                    setFileList([
+                      {
+                        uid: '-1',
+                        name: 'avatar.png',
+                        status: 'done',
+                        url: url,
+                      },
+                    ]);
+                  } else {
+                    setFileList([]);
+                  }
+                }}
+              />
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <Button 
+                  icon={<PlusOutlined />} 
+                  onClick={() => {
+                    const uploadElement = document.querySelector('.avatar-upload input[type="file"]');
+                    if (uploadElement) {
+                      (uploadElement as HTMLElement).click();
+                    }
+                  }}
+                >
+                  {fileList.length >= 1 ? '更换头像' : '上传头像'}
+                </Button>
+                <Upload
+                  name="file"
+                  action="/api/file/upload"
+                  listType="text"
+                  fileList={fileList}
+                  onChange={handleUploadChange}
+                  beforeUpload={beforeUpload}
+                  maxCount={1}
+                  showUploadList={false}
+                  className="avatar-upload"
+                >
+                  <div style={{ display: 'none' }}>
+                    {uploadButton}
+                  </div>
+                </Upload>
+                <div style={{ marginLeft: '12px', fontSize: '12px', color: '#999' }}>
+                  支持JPG/PNG格式，大小不超过2MB
+                </div>
+              </div>
+            </Col>
+          </Row>
+        </Form.Item>
         
         <ProFormText
           name="userAccount"
