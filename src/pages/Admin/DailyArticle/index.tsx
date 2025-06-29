@@ -2,9 +2,9 @@ import CreateModal from '@/pages/Admin/DailyArticle/components/CreateModal';
 import UpdateModal from '@/pages/Admin/DailyArticle/components/UpdateModal';
 import { 
   addDailyArticleUsingPost,
-  deleteDailyArticleUsingPost, 
-  listDailyArticleVoByPageUsingPost, 
-  updateDailyArticleUsingPost
+  deleteDailyArticleUsingDelete, 
+  listDailyArticleVoByPageUsingGet, 
+  updateDailyArticleUsingPut
 } from '@/services/backend/dailyArticleController';
 import { BookOutlined, PlusOutlined, EditOutlined, DeleteOutlined, TagOutlined, ReadOutlined } from '@ant-design/icons';
 import type { ActionType, ProColumns } from '@ant-design/pro-components';
@@ -31,7 +31,7 @@ const DailyArticleManagement: React.FC = () => {
   const [currentRow, setCurrentRow] = useState<API.DailyArticleVO>();
 
   /**
-   * 删除每日美文
+   * 删除每日一文
    *
    * @param row
    */
@@ -39,7 +39,7 @@ const DailyArticleManagement: React.FC = () => {
     const hide = message.loading('正在删除');
     if (!row) return true;
     try {
-      await deleteDailyArticleUsingPost({
+      await deleteDailyArticleUsingDelete({
         id: row.id as any,
       });
       hide();
@@ -312,7 +312,7 @@ const DailyArticleManagement: React.FC = () => {
               delete (queryParams as any).publishDate;
             }
             
-            const { data, code } = await listDailyArticleVoByPageUsingPost(queryParams);
+            const { data, code } = await listDailyArticleVoByPageUsingGet(queryParams);
             
             return {
               success: code === 0,
