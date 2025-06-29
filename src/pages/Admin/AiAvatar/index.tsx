@@ -2,9 +2,9 @@ import CreateModal from '@/pages/Admin/AiAvatar/components/CreateModal';
 import UpdateModal from '@/pages/Admin/AiAvatar/components/UpdateModal';
 import { 
   addAiAvatarUsingPost,
-  deleteAiAvatarUsingPost,
-  listAiAvatarByPageUsingGet,
-  updateAiAvatarUsingPost
+  deleteAiAvatarUsingDelete,
+  listAiAvatarByPageAdminUsingGet,
+  updateAiAvatarAdminUsingPut
 } from '@/services/backend/aiAvatarController';
 import { PlusOutlined, RobotOutlined, EditOutlined, DeleteOutlined, TagOutlined } from '@ant-design/icons';
 import type { ActionType, ProColumns } from '@ant-design/pro-components';
@@ -28,18 +28,18 @@ const AiAvatarManagement: React.FC = () => {
   const [updateModalVisible, setUpdateModalVisible] = useState<boolean>(false);
   const actionRef = useRef<ActionType>();
   // 当前点击的数据
-  const [currentRow, setCurrentRow] = useState<API.AiAvatarVO>();
+  const [currentRow, setCurrentRow] = useState<API.AiAvatar>();
 
   /**
    * 删除AI分身
    *
    * @param row
    */
-  const handleDelete = async (row: API.AiAvatarVO) => {
+  const handleDelete = async (row: API.AiAvatar) => {
     const hide = message.loading('正在删除');
     if (!row) return true;
     try {
-      await deleteAiAvatarUsingPost({
+      await deleteAiAvatarUsingDelete({
         id: row.id as any,
       });
       hide();
@@ -76,7 +76,7 @@ const AiAvatarManagement: React.FC = () => {
   /**
    * 表格列配置
    */
-  const columns: ProColumns<API.AiAvatarVO>[] = [
+  const columns: ProColumns<API.AiAvatar>[] = [
     {
       title: 'ID',
       dataIndex: 'id',
@@ -148,6 +148,18 @@ const AiAvatarManagement: React.FC = () => {
       ),
     },
     {
+      title: '验证信息',
+      dataIndex: 'avatarAuth',
+      valueType: 'textarea',
+      hideInSearch: true,
+      width: 200,
+      render: (_, record) => (
+        <Paragraph ellipsis={{ rows: 2 }} style={{ marginBottom: 0, minWidth: 150 }}>
+          {record.avatarAuth}
+        </Paragraph>
+      ),
+    },
+    {
       title: '标签',
       dataIndex: 'tags',
       valueType: 'text',
@@ -167,6 +179,13 @@ const AiAvatarManagement: React.FC = () => {
           </Space>
         );
       },
+    },
+    {
+      title: '创建者ID',
+      dataIndex: 'creatorId',
+      valueType: 'text',
+      width: 100,
+      hideInForm: true,
     },
     {
       title: '评分',
@@ -280,7 +299,7 @@ const AiAvatarManagement: React.FC = () => {
           <RobotOutlined style={{ fontSize: 24, marginRight: 8, color: '#1890ff' }} />
           <Title level={4} style={{ margin: 0 }}>AI分身管理</Title>
         </div>
-        <ProTable<API.AiAvatarVO>
+        <ProTable<API.AiAvatar>
           headerTitle="AI分身列表"
           actionRef={actionRef}
           rowKey="id"
@@ -305,7 +324,7 @@ const AiAvatarManagement: React.FC = () => {
             const sortField = Object.keys(sort)?.[0];
             const sortOrder = sortField ? sort[sortField] as string : undefined;
             
-            const { data, code } = await listAiAvatarByPageUsingGet({
+            const { data, code } = await listAiAvatarByPageAdminUsingGet({
               ...params,
               sortField,
               sortOrder,
