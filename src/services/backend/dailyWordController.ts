@@ -17,6 +17,19 @@ export async function addDailyWordUsingPost(
   });
 }
 
+/** importDailyWord POST /api/daily-words/import */
+export async function importDailyWordUsingPost(
+  body: FormData,
+  options?: { [key: string]: any },
+) {
+  return request<API.BaseResponseDailyWordImportVO_>('/api/daily-words/import', {
+    method: 'POST',
+    requestType: 'form',
+    data: body,
+    ...(options || {}),
+  });
+}
+
 /** getDailyWordVOById GET /api/daily-words/${param0} */
 export async function getDailyWordVoByIdUsingGet(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
