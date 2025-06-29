@@ -1,0 +1,122 @@
+.pageTitle {
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.articleDetailCard {
+  margin-bottom: 24px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  overflow: hidden;
+
+  :global(.ant-card-body) {
+    padding: 24px;
+  }
+}
+
+.articleHeader {
+  margin-bottom: 24px;
+  
+  .articleTitle {
+    margin-bottom: 16px;
+  }
+  
+  .articleMeta {
+    color: rgba(0, 0, 0, 0.45);
+    margin: 16px 0;
+  }
+  
+  .articleTags {
+    margin: 16px 0;
+  }
+  
+  .articleStats {
+    margin: 24px 0 16px;
+  }
+}
+
+.articleCover {
+  text-align: center;
+  margin: 24px 0;
+  
+  img {
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.articleSummary {
+  background-color: #f5f5f5;
+  padding: 16px;
+  border-radius: 8px;
+  margin: 24px 0;
+  
+  blockquote {
+    margin: 0;
+    padding-left: 16px;
+    border-left: 4px solid #1890ff;
+    color: rgba(0, 0, 0, 0.45);
+    font-style: italic;
+    line-height: 1.8;
+  }
+}
+
+.articleContent {
+  font-size: 16px;
+  line-height: 1.8;
+  color: rgba(0, 0, 0, 0.85);
+  margin-bottom: 40px;
+  
+  p {
+    margin-bottom: 16px;
+  }
+  
+  img {
+    max-width: 100%;
+    margin: 16px 0;
+    border-radius: 4px;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    margin-top: 32px;
+    margin-bottom: 16px;
+    color: rgba(0, 0, 0, 0.85);
+  }
+  
+  ul, ol {
+    margin-bottom: 16px;
+    padding-left: 24px;
+    
+    li {
+      margin-bottom: 8px;
+    }
+  }
+  
+  pre {
+    background-color: #f5f5f5;
+    padding: 16px;
+    border-radius: 4px;
+    overflow-x: auto;
+    margin: 16px 0;
+    
+    code {
+      font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+    }
+  }
+}
+
+.noContent {
+  text-align: center;
+  color: rgba(0, 0, 0, 0.45);
+  padding: 48px 0;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+}
+
+.articleFooter {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+} 

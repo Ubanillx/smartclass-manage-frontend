@@ -1,0 +1,42 @@
+.ai-avatar-statistics {
+  .stat-summary {
+    margin-bottom: 24px;
+  }
+
+  .chart-controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    
+    .control-group {
+      display: flex;
+      align-items: center;
+      margin-bottom: 16px;
+      
+      .control-label {
+        margin-right: 12px;
+        font-weight: 500;
+      }
+    }
+    
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+      align-items: flex-start;
+      
+      .control-group {
+        margin-bottom: 16px;
+      }
+    }
+  }
+
+  .chart-container {
+    margin-top: 24px;
+    height: 400px;
+    
+    @media screen and (max-width: 576px) {
+      height: 300px;
+    }
+  }
+} 
