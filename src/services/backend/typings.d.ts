@@ -14,6 +14,28 @@ declare namespace API {
     id: number;
   };
 
+  type AiAvatar = {
+    abilities?: string;
+    avatarAuth?: string;
+    avatarImgUrl?: string;
+    baseUrl?: string;
+    createTime?: string;
+    creatorId?: number;
+    description?: string;
+    id?: number;
+    isDelete?: number;
+    isPublic?: number;
+    name?: string;
+    personality?: string;
+    rating?: number;
+    ratingCount?: number;
+    sort?: number;
+    status?: number;
+    tags?: string;
+    updateTime?: string;
+    usageCount?: number;
+  };
+
   type AiAvatarAddRequest = {
     abilities?: string;
     avatarAuth?: string;
@@ -209,9 +231,9 @@ declare namespace API {
     message?: string;
   };
 
-  type BaseResponseListAiAvatarVO_ = {
+  type BaseResponseListAiAvatar_ = {
     code?: number;
-    data?: AiAvatarVO[];
+    data?: AiAvatar[];
     message?: string;
   };
 
@@ -344,6 +366,12 @@ declare namespace API {
   type BaseResponseObject_ = {
     code?: number;
     data?: Record<string, any>;
+    message?: string;
+  };
+
+  type BaseResponsePageAiAvatar_ = {
+    code?: number;
+    data?: PageAiAvatar_;
     message?: string;
   };
 
@@ -1487,6 +1515,29 @@ declare namespace API {
     reviewId: number;
   };
 
+  type listAiAvatarByPageAdminUsingGETParams = {
+    abilities?: string;
+    adminId?: number;
+    avatarUrl?: string;
+    category?: string;
+    createTime?: string;
+    creatorId?: number;
+    current?: number;
+    description?: string;
+    id?: number;
+    isPublic?: number;
+    modelType?: string;
+    name?: string;
+    pageSize?: number;
+    personality?: string;
+    rating?: number;
+    sortField?: string;
+    sortOrder?: string;
+    status?: number;
+    tags?: string;
+    usageCount?: number;
+  };
+
   type listAiAvatarByPageUsingGETParams = {
     abilities?: string;
     adminId?: number;
@@ -2010,6 +2061,19 @@ declare namespace API {
   type OrderItem = {
     asc?: boolean;
     column?: string;
+  };
+
+  type PageAiAvatar_ = {
+    countId?: string;
+    current?: number;
+    maxLimit?: number;
+    optimizeCountSql?: boolean;
+    orders?: OrderItem[];
+    pages?: number;
+    records?: AiAvatar[];
+    searchCount?: boolean;
+    size?: number;
+    total?: number;
   };
 
   type PageAiAvatarVO_ = {
@@ -2702,6 +2766,11 @@ declare namespace API {
     courseId: number;
   };
 
+  type updateAiAvatarAdminUsingPUTParams = {
+    /** id */
+    id: number;
+  };
+
   type updateAiAvatarUsingPUTParams = {
     /** id */
     id: number;
@@ -3043,4 +3112,23 @@ declare namespace API {
     word?: string;
     wordId?: number;
   };
+
+  type DailyWordImportVO = {
+    total?: number;
+    success?: number;
+    fail?: number;
+    failList?: DailyWordImportFailItem[];
+  }
+  
+  type DailyWordImportFailItem = {
+    row?: number;
+    word?: string;
+    reason?: string;
+  }
+  
+  type BaseResponseDailyWordImportVO_ = {
+    code?: number;
+    data?: DailyWordImportVO;
+    message?: string;
+  }
 }
