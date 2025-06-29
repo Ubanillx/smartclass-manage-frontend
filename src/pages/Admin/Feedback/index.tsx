@@ -5,9 +5,9 @@ import '@umijs/max';
 import { Button, Card, message, Popconfirm, Space, Tag, Tooltip, Typography } from 'antd';
 import React, { useRef, useState } from 'react';
 import {
-  deleteUserFeedbackUsingPost,
-  listUserFeedbackByPageUsingPost,
-  processUserFeedbackUsingPost,
+  deleteUserFeedbackUsingDelete,
+  listUserFeedbackByPageUsingGet,
+  processUserFeedbackUsingPut,
 } from '@/services/backend/userFeedbackController';
 import styles from './index.less';
 import ProcessModal from './components/ProcessModal';
@@ -58,16 +58,16 @@ const FeedbackManagement: React.FC = () => {
   const [currentRow, setCurrentRow] = useState<API.UserFeedback>();
 
   /**
-   * 删除反馈
+   * 删除用户反馈
    *
-   * @param row
+   * @param record
    */
-  const handleDelete = async (row: API.UserFeedback) => {
+  const handleDelete = async (record: API.UserFeedback) => {
     const hide = message.loading('正在删除');
-    if (!row) return true;
+    if (!record) return true;
     try {
-      await deleteUserFeedbackUsingPost({
-        id: row.id as any,
+      await deleteUserFeedbackUsingDelete({
+        id: record.id as any,
       });
       hide();
       message.success('删除成功');
@@ -81,25 +81,26 @@ const FeedbackManagement: React.FC = () => {
   };
 
   /**
-   * 处理反馈状态
-   * 
-   * @param id 反馈ID
-   * @param status 状态值 (1-已处理，2-处理中，0-未处理)
+   * 处理用户反馈
+   *
+   * @param record
+   * @param status
    */
-  const handleProcess = async (id: number, status: number) => {
-    const hide = message.loading('正在更新状态');
+  const handleProcess = async (record: API.UserFeedback, status: number) => {
+    const hide = message.loading('正在处理');
+    if (!record) return true;
     try {
-      await processUserFeedbackUsingPost({
-        id,
-        status,
-      });
+      await processUserFeedbackUsingPut(
+        { id: record.id as any },
+        { id: record.id, status }
+      );
       hide();
-      message.success('状态更新成功');
+      message.success('处理成功');
       actionRef?.current?.reload();
       return true;
     } catch (error: any) {
       hide();
-      message.error('状态更新失败，' + error.message);
+      message.error('处理失败，' + error.message);
       return false;
     }
   };
@@ -323,13 +324,13 @@ const FeedbackManagement: React.FC = () => {
               delete requestParams.status;
             }
 
-            const { data, code } = await listUserFeedbackByPageUsingPost({
+            const { data, code } = await listUserFeedbackByPageUsingGet({
               ...requestParams,
               sortField,
               sortOrder,
               pageSize: params.pageSize,
               current: params.current,
-            } as API.UserFeedbackQueryRequest);
+            } as API.listUserFeedbackByPageUsingGETParams);
 
             return {
               success: code === 0,
@@ -361,16 +362,17 @@ const FeedbackManagement: React.FC = () => {
       {/* 处理反馈的模态框 */}
       <ProcessModal
         visible={processModalVisible}
+        onCancel={() => setProcessModalVisible(false)}
         feedback={currentRow}
         onSubmit={async (values) => {
-          const success = await handleProcess(currentRow?.id as number, values.status as number);
+          if (!currentRow) return false;
+          const success = await handleProcess(currentRow, values.status as number);
           if (success) {
             setProcessModalVisible(false);
-            setCurrentRow(undefined);
+            actionRef.current?.reload();
+            return true;
           }
-        }}
-        onCancel={() => {
-          setProcessModalVisible(false);
+          return false;
         }}
       />
 
