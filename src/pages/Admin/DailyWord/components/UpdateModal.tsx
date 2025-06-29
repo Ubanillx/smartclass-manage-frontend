@@ -1,4 +1,4 @@
-import { updateDailyWordUsingPost } from '@/services/backend/dailyWordController';
+import { updateDailyWordUsingPut } from '@/services/backend/dailyWordController';
 import { ProColumns } from '@ant-design/pro-components';
 import '@umijs/max';
 import { message, Modal, Form, Input, Button, DatePicker, InputNumber, Select } from 'antd';
@@ -14,14 +14,14 @@ interface Props {
 }
 
 /**
- * 更新每日单词
+ * 更新每日一词
  *
  * @param fields
  */
 const handleUpdate = async (fields: API.DailyWordUpdateRequest) => {
   const hide = message.loading('正在更新');
   try {
-    await updateDailyWordUsingPost(fields);
+    await updateDailyWordUsingPut({ id: fields.id as number }, fields);
     hide();
     message.success('更新成功');
     return true;

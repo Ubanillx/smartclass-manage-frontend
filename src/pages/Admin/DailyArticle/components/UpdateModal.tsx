@@ -1,4 +1,4 @@
-import { updateDailyArticleUsingPost } from '@/services/backend/dailyArticleController';
+import { updateDailyArticleUsingPut } from '@/services/backend/dailyArticleController';
 import { ProColumns } from '@ant-design/pro-components';
 import '@umijs/max';
 import { message, Modal, Form, Input, Button, DatePicker, InputNumber, Select, Upload } from 'antd';
@@ -16,14 +16,14 @@ interface Props {
 }
 
 /**
- * 更新每日美文
+ * 更新每日一文
  *
  * @param fields
  */
 const handleUpdate = async (fields: API.DailyArticleUpdateRequest) => {
   const hide = message.loading('正在更新');
   try {
-    await updateDailyArticleUsingPost(fields);
+    await updateDailyArticleUsingPut({ id: fields.id as number }, fields);
     hide();
     message.success('更新成功');
     return true;

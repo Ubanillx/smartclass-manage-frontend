@@ -1,4 +1,4 @@
-import { updatePostUsingPost } from '@/services/backend/postController';
+import { updatePostUsingPut } from '@/services/backend/postController';
 import { ProColumns } from '@ant-design/pro-components';
 import '@umijs/max';
 import { message, Modal, Form, Input, Button, Tabs, Space } from 'antd';
@@ -35,7 +35,7 @@ const handleUpdate = async (fields: API.PostUpdateRequest) => {
       fields.tags = (fields.tags as string).split(',').map(tag => tag.trim()).filter(Boolean);
     }
     
-    await updatePostUsingPost(fields);
+    await updatePostUsingPut({ id: fields.id as number }, fields);
     hide();
     message.success('更新成功');
     return true;
