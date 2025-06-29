@@ -2,11 +2,11 @@ import CreateModal from '@/pages/Admin/Post/components/CreateModal';
 import UpdateModal from '@/pages/Admin/Post/components/UpdateModal';
 import { 
   addPostUsingPost,
-  deletePostUsingPost, 
-  listPostVoByPageUsingPost, 
-  updatePostUsingPost
+  deletePostUsingDelete, 
+  listPostVoByPageUsingGet, 
+  updatePostUsingPut
 } from '@/services/backend/postController';
-import { PlusOutlined, FormOutlined, EditOutlined, DeleteOutlined, TagOutlined } from '@ant-design/icons';
+import { PlusOutlined, FormOutlined, EditOutlined, DeleteOutlined, TagOutlined, EyeOutlined } from '@ant-design/icons';
 import type { ActionType, ProColumns } from '@ant-design/pro-components';
 import { PageContainer, ProTable } from '@ant-design/pro-components';
 import '@umijs/max';
@@ -18,9 +18,8 @@ import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import rehypeRaw from 'rehype-raw';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { coldarkCold } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import 'katex/dist/katex.min.css';
+import { history } from '@umijs/max';
 
 const { Title, Paragraph } = Typography;
 
@@ -47,7 +46,7 @@ const PostManagement: React.FC = () => {
     const hide = message.loading('正在删除');
     if (!row) return true;
     try {
-      await deletePostUsingPost({
+      await deletePostUsingDelete({
         id: row.id as any,
       });
       hide();
@@ -65,16 +64,13 @@ const PostManagement: React.FC = () => {
   const CodeBlock = ({ node, inline, className, children, ...props }: any) => {
     const match = /language-(\w+)/.exec(className || '');
     return !inline && match ? (
-      <SyntaxHighlighter
-        style={coldarkCold}
-        language={match[1]}
-        PreTag="div"
-        {...props}
-      >
-        {String(children).replace(/\n$/, '')}
-      </SyntaxHighlighter>
+      <pre style={{ backgroundColor: '#f6f8fa', padding: '16px', borderRadius: '6px' }} {...props}>
+        <code>
+          {String(children).replace(/\n$/, '')}
+        </code>
+      </pre>
     ) : (
-      <code className={className} {...props}>
+      <code style={{ backgroundColor: '#f6f8fa', padding: '2px 4px', borderRadius: '3px' }} {...props}>
         {children}
       </code>
     );
@@ -222,6 +218,16 @@ const PostManagement: React.FC = () => {
         <Space direction="vertical" size="small" style={{ width: '100%' }}>
           <Button
             type="link"
+            icon={<EyeOutlined />}
+            onClick={() => {
+              history.push(`/admin/postDetail/${record.id}`);
+            }}
+            style={{ padding: '0px 0px' }}
+          >
+            详情
+          </Button>
+          <Button
+            type="link"
             icon={<EditOutlined />}
             onClick={() => {
               setCurrentRow(record);
@@ -278,7 +284,7 @@ const PostManagement: React.FC = () => {
             const sortField = Object.keys(sort)?.[0];
             const sortOrder = sortField ? sort[sortField] : undefined;
             
-            const { data, code } = await listPostVoByPageUsingPost({
+            const { data, code } = await listPostVoByPageUsingGet({
               ...params,
               sortField,
               sortOrder,
