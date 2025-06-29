@@ -1,14 +1,14 @@
 import { addAiAvatarUsingPost } from '@/services/backend/aiAvatarController';
 import { ProColumns } from '@ant-design/pro-components';
 import '@umijs/max';
-import { message, Modal, Form, Input, Button, Radio, InputNumber, Upload } from 'antd';
+import { message, Modal, Form, Input, Button, Radio, InputNumber, Upload, Select, Image, Row, Col } from 'antd';
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import React, { useState } from 'react';
 import type { RcFile, UploadFile, UploadProps } from 'antd/es/upload/interface';
 
 interface Props {
   visible: boolean;
-  columns: ProColumns<API.AiAvatarVO>[];
+  columns: ProColumns<API.AiAvatar>[];
   onSubmit: (values: API.AiAvatarAddRequest) => void;
   onCancel: () => void;
 }
@@ -56,7 +56,8 @@ const CreateModal: React.FC<Props> = (props) => {
         avatarImgUrl: values.avatarImgUrl,
         abilities: values.abilities,
         personality: values.personality,
-        tags: values.tags,
+        avatarAuth: values.avatarAuth,
+        tags: values.tags ? values.tags.filter((tag: string) => tag.trim() !== '').join(',') : '',
         baseUrl: values.baseUrl,
         isPublic: values.isPublic,
         sort: values.sort
@@ -172,32 +173,70 @@ const CreateModal: React.FC<Props> = (props) => {
         </Form.Item>
         
         <Form.Item
-          name="avatarImgUrl"
-          label="头像URL"
-          help="请输入头像URL或上传图片"
-        >
-          <Input placeholder="请输入头像URL" />
-        </Form.Item>
-        
-        <Form.Item label="上传头像">
-          <Upload
-            name="file"
-            listType="picture-card"
-            fileList={fileList}
-            action="/api/file/upload"
-            onChange={handleUploadChange}
-            beforeUpload={beforeUpload}
-            maxCount={1}
-          >
-            {fileList.length >= 1 ? null : uploadButton}
-          </Upload>
-        </Form.Item>
-
-        <Form.Item
           name="baseUrl"
           label="基础URL"
         >
           <Input placeholder="请输入基础URL" />
+        </Form.Item>
+        
+        <Form.Item label="头像">
+          <Row gutter={16} align="middle">
+            <Col span={8} style={{ textAlign: 'center' }}>
+              {fileList.length > 0 && fileList[0].url ? (
+                <Image 
+                  src={fileList[0].url} 
+                  alt="头像预览" 
+                  style={{ width: '100%', maxWidth: '104px', borderRadius: '4px' }}
+                />
+              ) : (
+                <div style={{ width: '104px', height: '104px', backgroundColor: '#f5f5f5', borderRadius: '4px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <span>暂无头像</span>
+                </div>
+              )}
+            </Col>
+            <Col span={16}>
+              <Form.Item
+                name="avatarImgUrl"
+                label="头像URL"
+                help="请输入头像URL或上传图片"
+                style={{ marginBottom: 0 }}
+                noStyle={false}
+              >
+                <Input 
+                  placeholder="请输入头像URL" 
+                  onChange={(e) => {
+                    const url = e.target.value;
+                    if (url && url.trim() !== '') {
+                      setFileList([
+                        {
+                          uid: '-1',
+                          name: 'avatar.png',
+                          status: 'done',
+                          url: url,
+                        },
+                      ]);
+                    } else {
+                      setFileList([]);
+                    }
+                  }}
+                />
+              </Form.Item>
+              <div style={{ marginTop: '8px' }}>
+                <Upload
+                  name="file"
+                  action="/api/file/upload"
+                  onChange={handleUploadChange}
+                  beforeUpload={beforeUpload}
+                  maxCount={1}
+                  showUploadList={false}
+                >
+                  <Button icon={<PlusOutlined />}>
+                    {fileList.length >= 1 ? '更换头像' : '上传头像'}
+                  </Button>
+                </Upload>
+              </div>
+            </Col>
+          </Row>
         </Form.Item>
         
         <Form.Item
@@ -225,11 +264,28 @@ const CreateModal: React.FC<Props> = (props) => {
         </Form.Item>
         
         <Form.Item
+          name="avatarAuth"
+          label="鉴权秘钥"
+        >
+          <Input.TextArea 
+            placeholder="请输入AI分身鉴权秘钥" 
+            rows={3} 
+            maxLength={500} 
+            showCount 
+          />
+        </Form.Item>
+        
+        <Form.Item
           name="tags"
           label="标签"
-          help="多个标签请用逗号分隔，如：英语,教育,聊天"
+          help="输入标签后按Enter键添加"
         >
-          <Input placeholder="请输入标签，多个标签用逗号分隔" />
+          <Select
+            mode="tags"
+            placeholder="请输入标签"
+            style={{ width: '100%' }}
+            tokenSeparators={[',']}
+          />
         </Form.Item>
 
         <Form.Item
