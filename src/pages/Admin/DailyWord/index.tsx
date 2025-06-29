@@ -2,9 +2,9 @@ import CreateModal from '@/pages/Admin/DailyWord/components/CreateModal';
 import UpdateModal from '@/pages/Admin/DailyWord/components/UpdateModal';
 import { 
   addDailyWordUsingPost,
-  deleteDailyWordUsingPost, 
-  listDailyWordVoByPageUsingPost, 
-  updateDailyWordUsingPost
+  deleteDailyWordUsingDelete, 
+  listDailyWordVoByPageUsingGet, 
+  updateDailyWordUsingPut
 } from '@/services/backend/dailyWordController';
 import { PlusOutlined, BookOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import type { ActionType, ProColumns } from '@ant-design/pro-components';
@@ -39,7 +39,7 @@ const DailyWordManagement: React.FC = () => {
     const hide = message.loading('正在删除');
     if (!row) return true;
     try {
-      await deleteDailyWordUsingPost({
+      await deleteDailyWordUsingDelete({
         id: row.id as any,
       });
       hide();
@@ -289,7 +289,7 @@ const DailyWordManagement: React.FC = () => {
               delete (queryParams as any).publishDate;
             }
             
-            const { data, code } = await listDailyWordVoByPageUsingPost(queryParams);
+            const { data, code } = await listDailyWordVoByPageUsingGet(queryParams);
             
             return {
               success: code === 0,
