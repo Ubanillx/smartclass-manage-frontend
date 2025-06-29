@@ -49,4 +49,7 @@ export default {
   'menu.editor.flow': '流程编辑器',
   'menu.editor.mind': '脑图编辑器',
   'menu.editor.koni': '拓扑编辑器',
+  'menu.admin.aiAvatarManagement': 'AI分身管理',
+  'menu.admin.aiAvatarManagement.aiAvatarManagement': 'AI分身列表',
+  'menu.admin.aiAvatarManagement.statistics': '使用统计',
 };
